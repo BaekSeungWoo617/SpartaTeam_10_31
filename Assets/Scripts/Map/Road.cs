@@ -18,5 +18,10 @@ public class Road : MonoBehaviour
     {
         
         transform.Translate(direction * moveSpeed * Time.deltaTime);   
+        if(this.transform.position.z <-100)
+        {
+            gameObject.SetActive(false);
+            gameObject.transform.position = Vector3.zero;
+        }
     }
 }
