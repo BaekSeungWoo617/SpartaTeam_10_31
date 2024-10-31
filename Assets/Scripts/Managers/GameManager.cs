@@ -6,6 +6,7 @@ public class GameManager : SingletonBase<GameManager>
     private int _huddleCount;
     private int _life;
     private int _highScore;
+    private int _roadMoveSpeed;
     public int score
     {
         get { return _score; }
@@ -21,7 +22,11 @@ public class GameManager : SingletonBase<GameManager>
         get { return _life; }
         set { _life = value; }
     }
-
+    public int roadMoveSpeed
+    {
+        get { return _roadMoveSpeed; }
+        set { _roadMoveSpeed = value; }
+    }
     protected override void Awake()
     {
         base.Awake();
