@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.LogError("¸ŞÀÎ Ä«¸Ş¶ó¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError("ë©”ì¸ ì¹´ë©”ë¼ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
         }
 
         controller = GetComponent<PlayerController>();
