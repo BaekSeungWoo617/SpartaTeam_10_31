@@ -4,6 +4,8 @@ public class GameManager : SingletonBase<GameManager>
 {
     private int _score;
     private int _huddleCount;
+    private int _life;
+    private int _highScore;
     public int score
     {
         get { return _score; }
@@ -14,33 +16,38 @@ public class GameManager : SingletonBase<GameManager>
         get { return _huddleCount; }
         set { _huddleCount = value; }
     }
+    public int life
+    {
+        get { return _life; }
+        set { _life = value; }
+    }
+
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
-    public void AddScore(int amount)
+    public void GameOver()
     {
-        _score += amount;
+        if (_score > _highScore) _score = _highScore;
+        ResetValue();
     }
-
-    public void ResetScore()
+    public void ResetValue()
     {
         _score = 0;
-    }
-
-    public void AddHuddleCount(int amount)
-    {
-        _huddleCount += amount;
-    }
-
-    public void ResetHuddleCount()
-    {
         _huddleCount = 0;
+        _life = 5;
     }
-    public void ResetGame()
+    public void AddScore(int value)
     {
-        ResetScore();
-        ResetHuddleCount();
+        _score += value;
+    }
+    public void AddHuddleCount(int value)
+    {
+        _huddleCount += value;
+    }
+    public void AddLife(int value)
+    {
+        _life += value;
     }
 }
