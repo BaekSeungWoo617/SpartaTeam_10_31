@@ -2,46 +2,41 @@ using System;
 using Unity;
 public class GameManager : SingletonBase<GameManager>
 {
-    private int score;
-    private int huddleCount;
-    public int Score
+    private int _score;
+    private int _huddleCount;
+    public int score
     {
-        get { return score; }
-        set { score = value; }
+        get { return _score; }
+        set { _score = value; }
     }
-    public int HuddleCount
+    public int huddleCount
     {
-        get { return huddleCount; }
-        set { huddleCount = value; }
+        get { return _huddleCount; }
+        set { _huddleCount = value; }
     }
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
-    private void Update()
-    {
-        
-    }
-
     public void AddScore(int amount)
     {
-        score += amount;
+        _score += amount;
     }
 
     public void ResetScore()
     {
-        score = 0;
+        _score = 0;
     }
 
     public void AddHuddleCount(int amount)
     {
-        huddleCount += amount;
+        _huddleCount += amount;
     }
 
     public void ResetHuddleCount()
     {
-        huddleCount = 0;
+        _huddleCount = 0;
     }
     public void ResetGame()
     {
