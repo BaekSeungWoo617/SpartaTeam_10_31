@@ -22,7 +22,7 @@ public class RoadManager : SingletonBase<RoadManager>
 
     private void SetRoadPrefab()
     {
-        roadPrefab = Resources.Load<GameObject>("Road");
+        roadPrefab = Resources.Load<GameObject>("RoadTest");
 
         if (roadPrefab == null)
         {
