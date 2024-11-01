@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8209611493499779404}
   m_Layer: 0
   m_Name: TrafficCone
-  m_TagString: Untagged
+  m_TagString: Huddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
