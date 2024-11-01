@@ -11,14 +11,48 @@ public class UIManager : SingletonBase<UIManager>
     {
         base.Awake();
 
-        if (_rootUI == null)
+        if (_rootUI != null)
         {
-            CreateUIRoot();
+            OnableAllUI();
+            return;
         }
-
+        CreateUIRoot();
         DontDestroyOnLoad(gameObject);
     }
+    
+    private void OnDisable()
+    {
+        if (_rootUI != null)
+        {
+            Destroy(_rootUI);
+            _rootUI = null;
+        }
+    }
+    
+    private void OnableAllUI()
+    {
+        if (_rootUI != null)
+        {
+            foreach (Transform child in _rootUI.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
 
+    // TODO: Scene 변경 전에 호출
+    // UI 루트 내 모든 오브젝트 비활성화
+    public void DisableAllUI()
+    {
+        if (_rootUI != null)
+        {
+            foreach (Transform child in _rootUI.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+    
     // Canvas 아래에 UI 요소를 초기화하고 로드
     private void SettingUI(Transform parentCanvas)
     {
