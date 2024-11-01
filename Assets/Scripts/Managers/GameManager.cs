@@ -20,6 +20,7 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private int _playerLevel;
     
     public event Action<int> OnScoreChanged;
+    public event Action OnGameOver;
 
     public int score
     {
@@ -39,6 +40,10 @@ public class GameManager : SingletonBase<GameManager>
     {
         get { return _life; }
         set { _life = value; }
+    }
+    public int highScore
+    {
+        get { return _highScore; }
     }
     public float roadMoveSpeed
     {
@@ -73,6 +78,7 @@ public class GameManager : SingletonBase<GameManager>
         {
             _highScore = _score;
         }
+        OnGameOver?.Invoke();
         ResetValue();
     }
     public void ResetValue()

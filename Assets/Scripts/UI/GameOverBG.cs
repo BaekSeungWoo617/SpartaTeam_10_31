@@ -1,19 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameOverBG : MonoBehaviour
 {
-    //private Button _retryBtn;
-    void Start()
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highscoreText;
+
+    private void Start()
     {
-      //  _retryBtn = GetComponentInChildren<Button>();
-        this.gameObject.SetActive(false);        
+        GameManager.Instance.OnGameOver += ShowGameOverBG;
+        this.gameObject.SetActive(false);
+    }
+    
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGameOver -= ShowGameOverBG;
+        }
     }
 
-    void Update()
+    private void ShowGameOverBG()
     {
-        
+        scoreText.text = GameManager.Instance.score.ToString();
+        highscoreText.text = GameManager.Instance.highScore.ToString();
+        this.gameObject.SetActive(true);
     }
 }

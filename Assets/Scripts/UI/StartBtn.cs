@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class StartBtn : MonoBehaviour
 {
-    public void OnStartBtnClicked()
+    public void GameStart()
     {
         UIManager.Instance.DisableAllUI();
         SceneManager.LoadScene("PlayScene");
-        Debug.Log("Start");
     }
 }
