@@ -5802,7 +5802,7 @@ Animator:
   m_GameObject: {fileID: 235662834}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8d5a0e0d58f4e4176a844a1a03976c19, type: 2}
+  m_Controller: {fileID: 9100000, guid: 120a787c2b2aa1a4f87449bd52908a13, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -7775,6 +7775,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a656f143-e1ca-445c-bad0-ec1c51e3f8b5
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1868964116}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSlide
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f02c3d48-9391-46e0-b8c4-5f4befa752b0
+    m_ActionName: Player/Slide[/Keyboard/s,/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -7795,7 +7811,7 @@ MonoBehaviour:
   _verticalSpeed: 0
   _horizontalSpeed: 3
   _jumpForce: 5
-  _extraJump: 1
+  _jumpCount: 2
 --- !u!114 &1868964117
 MonoBehaviour:
   m_ObjectHideFlags: 0
