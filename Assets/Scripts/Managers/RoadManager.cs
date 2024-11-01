@@ -29,7 +29,6 @@ public class RoadManager : SingletonBase<RoadManager>
             Debug.LogError("RoadPrefab�� ã�� �� �����ϴ�.");
         }
     }
-
     private void InitializeObjectPool()
     {
         roadPool = gameObject.AddComponent<ObjectPool>();
