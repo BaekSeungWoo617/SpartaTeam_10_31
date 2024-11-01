@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,18 +10,25 @@ public class GameManager : SingletonBase<GameManager>
         Normal,
         Hard
     }
-    [SerializeField]private int _score;
+    
+    [SerializeField] private int _score;
     [SerializeField] private int _huddleCount;
     [SerializeField] private int _life;
     [SerializeField] private int _highScore;
     [SerializeField] private float _roadMoveSpeed;
 
     [SerializeField] private int _playerLevel;
+    
+    public event Action<int> OnScoreChanged;
 
     public int score
     {
         get { return _score; }
-        set { _score = value; }
+        set
+        {
+            _score = value;
+            OnScoreChanged?.Invoke(_score);
+        }
     }
     public int huddleCount
     {
@@ -37,16 +45,26 @@ public class GameManager : SingletonBase<GameManager>
         get { return _roadMoveSpeed; }
         set { _roadMoveSpeed = value; }
     }
+    
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+
+        CreateManager();
     }
+    
     private void Start()
     {
         _playerLevel = (int)GameLevel.Easy;
         GameStartSettings(_playerLevel);
     }
+
+    private void CreateManager()
+    {
+        UIManager UI = UIManager.Instance;
+    }
+    
     public void GameStartSettings(int level)
     {
         _life = 3 - level;

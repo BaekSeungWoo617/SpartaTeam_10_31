@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 3067509148770162631}
   - component: {fileID: 4910604181667703569}
   m_Layer: 5
-  m_Name: GameOverBackGround
+  m_Name: GameOverBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
