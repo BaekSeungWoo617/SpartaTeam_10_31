@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 7507179580153688778}
   - component: {fileID: 3852393942804764966}
   - component: {fileID: 5903913896056939709}
+  - component: {fileID: 1563971116062162005}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -328,7 +329,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3852393942804764966}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1563971116062162005}
+        m_TargetAssemblyTypeName: StartBtn, Assembly-CSharp
+        m_MethodName: OnStartBtnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1563971116062162005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536044100973699387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb562baf30491794b928c80c5e32b03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5462575125332092332
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +767,7 @@ GameObject:
   - component: {fileID: 4481081502527683458}
   - component: {fileID: 3067509148770162631}
   - component: {fileID: 4910604181667703569}
+  - component: {fileID: 2225651700755221154}
   m_Layer: 5
   m_Name: GameOverBG
   m_TagString: Untagged
@@ -810,6 +836,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2225651700755221154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351686394350246759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd15daabf53791242ad64e72983efcc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8653941535120042101
 GameObject:
   m_ObjectHideFlags: 0

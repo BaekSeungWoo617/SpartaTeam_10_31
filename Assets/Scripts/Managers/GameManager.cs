@@ -52,20 +52,12 @@ public class GameManager : SingletonBase<GameManager>
         RoadManager roadManager = RoadManager.Instance;
         roadManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
-
-        // UI 테스트 시에만 활성화하여 사용
-        // CreateManager();
     }
     
     private void Start()
     {
         _playerLevel = (int)GameLevel.Easy;
         GameStartSettings(_playerLevel);
-    }
-
-    private void CreateManager()
-    {
-        UIManager UI = UIManager.Instance;
     }
     
     public void GameStartSettings(int level)
