@@ -26,7 +26,7 @@ public class RoadManager : SingletonBase<RoadManager>
 
         if (roadPrefab == null)
         {
-            Debug.LogError("RoadPrefab�� ã�� �� �����ϴ�.");
+            Debug.LogError("roadPrefab cannot found!");
         }
     }
 

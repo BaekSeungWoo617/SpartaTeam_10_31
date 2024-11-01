@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     private LayerMask groundLayer;
-    private float groundCheckDistance = 0.6f;
+    private float groundCheckDistance = 0.3f;
     [SerializeField] private float _jumpForce = 5.0f;
     [SerializeField] private bool _extraJump = true;
 
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckGround()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
+        Ray ray = new Ray(transform.position + transform.up * 0.1f, Vector3.down);
 
         RaycastHit hit;
 
