@@ -258,7 +258,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2823210636086467195}
         m_TargetAssemblyTypeName: StartBtn, Assembly-CSharp
-        m_MethodName: OnStartBtnClicked
+        m_MethodName: GameStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

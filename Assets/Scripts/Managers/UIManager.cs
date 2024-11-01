@@ -6,10 +6,14 @@ public class UIManager : SingletonBase<UIManager>
 {
     private GameObject _rootUI;
     private Canvas _canvas;
+    private string UIName;
 
     protected override void Awake()
     {
         base.Awake();
+        
+        UIName = SceneManager.GetActiveScene().name + "UI";
+        _rootUI = GameObject.Find(UIName);
         if (_rootUI != null)    // Scene에 UI 오브젝트가 있으면
         {
             OnEnableAllUI();    // 존재하는 UI 활성화
@@ -56,8 +60,8 @@ public class UIManager : SingletonBase<UIManager>
     // 현재 활성화된 Scene의 UI 로드
     private void LoadSceneUI(Transform parent)
     {
-        string sceneName = SceneManager.GetActiveScene().name;
-        string resourcePath = $"Prefabs/UI/{sceneName}";
+        string folderName = UIName.Substring(0, UIName.Length - 2);
+        string resourcePath = $"Prefabs/UI/{folderName}";
         LoadAndInstantiatePrefabs(resourcePath, parent);
     }
     
@@ -65,7 +69,8 @@ public class UIManager : SingletonBase<UIManager>
     private void CreateUIRoot()
     {
         // UI의 루트 GameObject를 생성하고 UI로 이름 설정
-        _rootUI = new GameObject("UI");
+        _rootUI = new GameObject(UIName);
+        DontDestroyOnLoad(_rootUI);
 
         // Canvas 생성하고 랜더링 모드 설정
         GameObject canvasObject = new GameObject("Canvas");

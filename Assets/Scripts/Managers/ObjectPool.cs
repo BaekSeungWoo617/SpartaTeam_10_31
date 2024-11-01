@@ -19,7 +19,7 @@ public class ObjectPool : MonoBehaviour
 
     private GameObject CreateNewObject()
     {
-        var newObj = Instantiate(objectPrefab); ;
+        var newObj = Instantiate(objectPrefab);
         newObj.SetActive(false);
         return newObj;
     }

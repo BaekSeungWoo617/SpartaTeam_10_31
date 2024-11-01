@@ -29,9 +29,4 @@ public class PlayTopPanel : MonoBehaviour
     {
         _scoreText.text = newScore.ToString();
     }
-
-    void Update()
-    {
-        
-    }
 }
