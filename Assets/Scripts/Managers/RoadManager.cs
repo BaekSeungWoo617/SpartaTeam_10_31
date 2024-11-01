@@ -8,10 +8,11 @@ public class RoadManager : SingletonBase<RoadManager>
     private ObjectPool roadPool;
     private GameObject roadPrefab;
     private GameObject prevRoad;
+    private GameObject StartRoad;
+    private GameObject EndRoad;
 
     private float spawnInterval = 2.0f;
     private float timer;
-
     protected override void Awake()
     {
         base.Awake();
@@ -19,16 +20,22 @@ public class RoadManager : SingletonBase<RoadManager>
         SetRoadPrefab();
         InitializeObjectPool();
     }
-
+    private void Start()
+    {
+        StartRoad = Resources.Load<GameObject>("Prefabs/Road/RoadStart");
+        EndRoad= Resources.Load<GameObject>("Prefabs/Road/RoadEnd");
+        GameObject newObj = Instantiate(StartRoad);
+    }
     private void SetRoadPrefab()
     {
-        roadPrefab = Resources.Load<GameObject>("RoadTest");
+        roadPrefab = Resources.Load<GameObject>("Prefabs/Road/RoadTest");
 
         if (roadPrefab == null)
         {
-            Debug.LogError("RoadPrefab�� ã�� �� �����ϴ�.");
+            Debug.LogError("오브젝트 불러오기 애러");
         }
     }
+
     private void InitializeObjectPool()
     {
         roadPool = gameObject.AddComponent<ObjectPool>();
@@ -62,7 +69,7 @@ public class RoadManager : SingletonBase<RoadManager>
         }
 
         road.SetActive(true);
-        road.transform.position = new Vector3(0, 0, 0); 
+        road.transform.position = new Vector3(0, 0, 100); 
         prevRoad = road;
     }
 
