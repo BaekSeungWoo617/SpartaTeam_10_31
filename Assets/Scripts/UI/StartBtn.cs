@@ -9,5 +9,6 @@ public class StartBtn : MonoBehaviour
     {
         UIManager.Instance.DisableAllUI();
         SceneManager.LoadScene("PlayScene");
+        Debug.Log("Start");
     }
 }
