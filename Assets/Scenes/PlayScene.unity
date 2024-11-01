@@ -519,7 +519,7 @@ MonoBehaviour:
   _verticalSpeed: 0
   _horizontalSpeed: 3
   _jumpForce: 5
-  _extraJump: 1
+  _jumpCount: 0
 --- !u!114 &937090716
 MonoBehaviour:
   m_ObjectHideFlags: 0

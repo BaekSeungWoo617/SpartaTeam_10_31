@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayTopPanel : MonoBehaviour
 {
-    private TextMeshProUGUI _scoreText;
+    private int _life;
+    public TextMeshProUGUI scoreText;
+    public GameObject lifePanel;
 
     private void Start()
     {
-        // 자식 오브젝트로 있는 텍스트 컴포넌트 가져오기
-        _scoreText = GetComponentInChildren<TextMeshProUGUI>();
+        // 시작 시 라이프 세팅
+        //_life = GameManager.Instance.life;
+         _life = 3; // TestCode
+        for (int i = 0; i < _life; i++)
+        {
+            UIManager.Instance.LoadAndInstantiatePrefab("Prefabs/UI/Objects/lifeImage", lifePanel.transform);
+        }
         // 점수 변경되는 이벤트 구독
         GameManager.Instance.OnScoreChanged += UpdateScoreText;
         // 시작 시 점수판 초기화
@@ -27,6 +35,16 @@ public class PlayTopPanel : MonoBehaviour
 
     private void UpdateScoreText(int newScore)
     {
-        _scoreText.text = newScore.ToString();
+        scoreText.text = newScore.ToString();
     }
+    /* TestCode */
+    // 점수 올라가면 반영되는지 테스트
+    // private void Update()
+    // {
+    //     IncreseScore();
+    // }
+    // private void IncreseScore()
+    // {
+    //     GameManager.Instance.score++;
+    // }
 }

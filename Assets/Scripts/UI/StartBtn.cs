@@ -7,7 +7,6 @@ public class StartBtn : MonoBehaviour
 {
     public void GameStart()
     {
-        UIManager.Instance.DisableAllUI();
         SceneManager.LoadScene("PlayScene");
     }
 }
