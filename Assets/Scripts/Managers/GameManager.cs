@@ -40,6 +40,8 @@ public class GameManager : SingletonBase<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        RoadManager roadManager = RoadManager.Instance;
+        roadManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
     }
     private void Start()
