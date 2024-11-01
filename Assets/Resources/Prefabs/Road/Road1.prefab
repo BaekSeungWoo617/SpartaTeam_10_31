@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7068259918808541040}
   - component: {fileID: 3444735528156805407}
   - component: {fileID: 7114067159493957667}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Road1
   m_TagString: Road
   m_Icon: {fileID: 0}
@@ -78,6 +78,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 9bff4c4ffbc29a041a638ec3743c588d, type: 3}
       propertyPath: m_Name
       value: Road Lane_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9bff4c4ffbc29a041a638ec3743c588d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9bff4c4ffbc29a041a638ec3743c588d, type: 3}
       propertyPath: m_LocalPosition.x

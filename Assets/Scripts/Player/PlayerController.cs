@@ -11,18 +11,25 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     private LayerMask groundLayer;
-    private float groundCheckDistance = 0.6f;
+    private float groundCheckDistance = 0.3f;
     [SerializeField] private float _jumpForce = 5.0f;
-    [SerializeField] private bool _extraJump = true;
+    [SerializeField] private int _jumpCount = 0;
+    private bool _isJumping = false;
 
     private float _time = 0.0f;
 
+    private Animator _animator;
     private Rigidbody _rigidbody;
 
     private void Awake()
     {
-        // Get rigidbody component
+        // Get player component
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
+        if (_animator == null)
+        {
+            Debug.LogError("animator connot found!");
+        }
     }
 
     private void Start()
@@ -43,6 +50,8 @@ public class PlayerController : MonoBehaviour
             _time = 0.0f;
             Debug.Log(_increaseSpeed);
         }
+
+        _animator.SetBool("IsRun", true);
     }
 
     private void FixedUpdate()
@@ -72,13 +81,25 @@ public class PlayerController : MonoBehaviour
     {
         if (CheckGround())
         {
-            _extraJump = true;
+            _jumpCount = 0;
         }
 
-        if(context.phase == InputActionPhase.Started && _extraJump)
+        if(context.phase == InputActionPhase.Started)
         {
-            _extraJump = false;
+            _jumpCount += 1;
+
+            _animator.SetTrigger("Jump");
+            _animator.SetInteger("JumpCount", _jumpCount);
+
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    public void OnSlide(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started && CheckGround())
+        {
+            _animator.SetTrigger("Slide");
         }
     }
 
@@ -91,10 +112,7 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckGround()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
-
-        RaycastHit hit;
-
-        return Physics.Raycast(ray, out hit, groundCheckDistance, groundLayer);
+        Ray ray = new Ray(transform.position + transform.up * 0.1f, Vector3.down);
+        return Physics.Raycast(ray, groundCheckDistance, groundLayer);
     }
 }
