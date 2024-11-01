@@ -8,10 +8,11 @@ public class RoadManager : SingletonBase<RoadManager>
     private ObjectPool roadPool;
     private GameObject roadPrefab;
     private GameObject prevRoad;
+    private GameObject StartRoad;
+    private GameObject EndRoad;
 
     private float spawnInterval = 2.0f;
     private float timer;
-
     protected override void Awake()
     {
         base.Awake();
@@ -19,14 +20,19 @@ public class RoadManager : SingletonBase<RoadManager>
         SetRoadPrefab();
         InitializeObjectPool();
     }
-
+    private void Start()
+    {
+        StartRoad = Resources.Load<GameObject>("Prefabs/Road/RoadStart");
+        EndRoad= Resources.Load<GameObject>("Prefabs/Road/RoadEnd");
+        GameObject newObj = Instantiate(StartRoad);
+    }
     private void SetRoadPrefab()
     {
-        roadPrefab = Resources.Load<GameObject>("Road");
+        roadPrefab = Resources.Load<GameObject>("Prefabs/Road/RoadTest");
 
         if (roadPrefab == null)
         {
-            Debug.LogError("roadPrefab cannot found!");
+            Debug.LogError("오브젝트 불러오기 애러");
         }
     }
 
@@ -63,7 +69,27 @@ public class RoadManager : SingletonBase<RoadManager>
         }
 
         road.SetActive(true);
-        road.transform.position = new Vector3(0, 0, 0); 
+        if(road.tag=="Road")
+        {
+        road.transform.position = new Vector3(0, 0, 100f); 
+        }
+        else if(road.tag == "Huddle")
+        {
+            float randX = Random.Range(-10f, 10f);
+            road.transform.position = new Vector3(randX, 0, 100f);
+        }
+        else if (road.tag == "LeftBuildings")
+        {
+            road.transform.position = new Vector3(-20f, 0, 100f);
+            road.transform.rotation = Quaternion.Euler(90,0,0);
+        }
+        else if (road.tag == "RightBuildings")
+        {
+            road.transform.position = new Vector3(20f, 0, 100f);
+            road.transform.rotation = Quaternion.Euler(-90, 0, 0);
+
+        }
+        else road.transform.position = new Vector3(0, 0, 0);
         prevRoad = road;
     }
 

@@ -24,7 +24,7 @@ public class Road : MonoBehaviour
     }
     void RoadSetFalse()
     {
-        if (this.transform.position.z < -100)
+        if (this.transform.position.z < -120)
         {
             gameObject.SetActive(false);
             gameObject.transform.position = Vector3.zero;
