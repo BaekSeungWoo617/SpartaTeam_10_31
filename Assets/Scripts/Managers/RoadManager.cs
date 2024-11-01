@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class RoadManager : MonoBehaviour
+public class RoadManager : SingletonBase<RoadManager>
 {
     public static RoadManager Instance;
     public GameObject[] road;
@@ -39,8 +40,8 @@ public class RoadManager : MonoBehaviour
         {
             ObjectPool pool = kvp.Value;
 
-            // ¿øÇÏ´Â ¸¸Å­ ¿ÀºêÁ§Æ®¸¦ °¡Á®¿Í¼­ È°¼ºÈ­
-            for (int i = 0; i < 10; i++) // ¿¹: ÃÖ´ë 10°³ È°¼ºÈ­
+            // ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ È°ï¿½ï¿½È­
+            for (int i = 0; i < 10; i++) // ï¿½ï¿½: ï¿½Ö´ï¿½ 10ï¿½ï¿½ È°ï¿½ï¿½È­
             {
                 GameObject obj = pool.Get();
                 if (obj != null)
@@ -80,4 +81,73 @@ public class RoadManager : MonoBehaviour
             pools[key].Release(obj);
         }
     }
+    // private ObjectPool roadPool;
+    // private GameObject roadPrefab;
+    // private GameObject prevRoad;
+
+    // private float spawnInterval = 2.0f;
+    // private float timer;
+
+    // private void Awake()
+    // {
+    //     base.Awake();
+
+    //     SetRoadPrefab();
+    //     InitializeObjectPool();
+    // }
+
+    // private void SetRoadPrefab()
+    // {
+    //     roadPrefab = Resources.Load<GameObject>("Road");
+
+    //     if (roadPrefab == null)
+    //     {
+    //         Debug.LogError("RoadPrefabï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+    //     }
+    // }
+
+    // private void InitializeObjectPool()
+    // {
+    //     roadPool = gameObject.AddComponent<ObjectPool>();
+    //     roadPool.ObjectPrefab = roadPrefab;
+    // }
+
+    // void Update()
+    // {
+    //     // Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //     timer += Time.deltaTime;
+
+    //     // ï¿½Ö±â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //     if (timer >= spawnInterval)
+    //     {
+    //         SetActiveRoad();
+    //         timer = 0f; // Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //     }
+    // }
+
+    // public void SetActiveRoad()
+    // {
+    //     GameObject road = roadPool.GetObject();
+
+    //     if (prevRoad == null)
+    //     {
+    //         road.transform.position = Vector3.zero;
+    //     }
+    //     else
+    //     {
+    //         // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //         Vector3 lastRoadPosition = prevRoad.transform.position;
+    //         Vector3 lastRoadSize = prevRoad.GetComponent<Renderer>().bounds.size; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
+    //         road.transform.position = new Vector3(lastRoadPosition.x, lastRoadPosition.y, lastRoadPosition.z + lastRoadSize.z);
+    //     }
+
+    //     road.SetActive(true);
+    //     road.transform.position = new Vector3(0, 0, 0); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+    //     prevRoad = road;
+    // }
+
+    // public void ReleaseRoad(GameObject road)
+    // {
+    //     roadPool.ReleaseObject(road);
+    // }
 }

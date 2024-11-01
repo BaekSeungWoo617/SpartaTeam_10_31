@@ -49,6 +49,8 @@ public class GameManager : SingletonBase<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        RoadManager roadManager = RoadManager.Instance;
+        roadManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
 
         // UI 테스트 시에만 활성화하여 사용
