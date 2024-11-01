@@ -12,13 +12,19 @@ public class Road : MonoBehaviour
     }
     private void Update()
     {
+        RoadSetFalse();
+    }
+    void FixedUpdate()
+    {
         RoadMove(moveDirection);
     }
     void RoadMove(Vector3 direction)
-    {
-        
+    {      
         transform.Translate(direction * moveSpeed * Time.deltaTime);   
-        if(this.transform.position.z <-100)
+    }
+    void RoadSetFalse()
+    {
+        if (this.transform.position.z < -100)
         {
             gameObject.SetActive(false);
             gameObject.transform.position = Vector3.zero;

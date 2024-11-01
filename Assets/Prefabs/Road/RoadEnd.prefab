@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5178629744291139374}
   - component: {fileID: 2621668144738431922}
+  - component: {fileID: 1883843273527872411}
   m_Layer: 0
   m_Name: RoadEnd
   m_TagString: Untagged
@@ -137,3 +138,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 20, y: 1, z: 20}
   m_Center: {x: 0, y: -0.8, z: 0}
+--- !u!114 &1883843273527872411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445823426723174750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6894bf040372f41a759dce7a63d803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

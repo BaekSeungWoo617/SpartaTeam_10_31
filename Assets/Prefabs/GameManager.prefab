@@ -60,8 +60,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1564169654646701641}
-  - component: {fileID: 6149740794601122552}
   - component: {fileID: 4577200600959947069}
+  - component: {fileID: 7058206115739960324}
   m_Layer: 0
   m_Name: RoadManager
   m_TagString: Untagged
@@ -84,22 +84,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 875640425309282856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6149740794601122552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7554947529169004270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12aefc83639c5d24c9a52a0dda5a9dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pools:
-  - tag: Road
-    prefab: {fileID: 0}
-    size: 4
 --- !u!114 &4577200600959947069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78953ce494ac5e43b6a0be4ce5987fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  road:
+  - {fileID: 8249385483560574822, guid: da998efa63ac51242b2f2e604b14e04b, type: 3}
+--- !u!114 &7058206115739960324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7554947529169004270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20118b32b0552e4da9afc5a56c38664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8249385483560574822, guid: da998efa63ac51242b2f2e604b14e04b, type: 3}
+  poolSize: 1
