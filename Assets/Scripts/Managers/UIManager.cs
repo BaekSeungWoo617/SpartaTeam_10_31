@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : SingletonBase<UIManager>
@@ -10,17 +12,16 @@ public class UIManager : SingletonBase<UIManager>
     protected override void Awake()
     {
         base.Awake();
-
-        if (_rootUI != null)
+        if (_rootUI != null)    // Scene에 UI 오브젝트가 있으면
         {
-            OnableAllUI();
+            OnEnableAllUI();    // 존재하는 UI 활성화
             return;
         }
-        CreateUIRoot();
-        DontDestroyOnLoad(gameObject);
+        CreateUIRoot();  // 없으면 UI 새로 생성
     }
-    
-    private void OnDisable()
+
+    // 프로그램 종료 시 UI 삭제
+    public void OnApplicationQuit()
     {
         if (_rootUI != null)
         {
@@ -29,7 +30,8 @@ public class UIManager : SingletonBase<UIManager>
         }
     }
     
-    private void OnableAllUI()
+    // 비활성화된 UI 활성화
+    private void OnEnableAllUI()
     {
         if (_rootUI != null)
         {
@@ -52,14 +54,15 @@ public class UIManager : SingletonBase<UIManager>
             }
         }
     }
-    
-    // Canvas 아래에 UI 요소를 초기화하고 로드
-    private void SettingUI(Transform parentCanvas)
-    {
-        // 지정된 Resources 폴더에서 모든 프리팹을 로드하고 인스턴스화
-        LoadAndInstantiatePrefabs("Prefabs/UI", parentCanvas);
-    }
 
+    // 현재 활성화된 Scene의 UI 로드
+    private void LoadSceneUI(Transform parent)
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        string resourcePath = $"Prefabs/UI/{sceneName}";
+        LoadAndInstantiatePrefabs(resourcePath, parent);
+    }
+    
     // 루트 UI GameObject와 Canvas 구조를 생성
     private void CreateUIRoot()
     {
@@ -81,11 +84,11 @@ public class UIManager : SingletonBase<UIManager>
 
         canvasObject.transform.SetParent(_rootUI.transform);
         
-        SettingUI(canvasObject.transform);
+        LoadSceneUI(canvasObject.transform);
     }
     
     // Resources 폴더에서 이름으로 지정된 하나의 프리팹을 로드하고 추가
-    private void LoadAndAddPrefab(string prefabName, Transform parent)
+    private void LoadAndInstantiatePrefab(string prefabName, Transform parent)
     {
         GameObject prefab = Resources.Load<GameObject>(prefabName);
 
@@ -104,7 +107,7 @@ public class UIManager : SingletonBase<UIManager>
     private void LoadAndInstantiatePrefabs(string resourceFolder, Transform parent)
     {
         GameObject[] prefabs = Resources.LoadAll<GameObject>(resourceFolder);
-
+    
         foreach (GameObject prefab in prefabs)
         {
             if (prefab != null)

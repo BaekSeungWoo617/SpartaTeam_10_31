@@ -51,7 +51,8 @@ public class GameManager : SingletonBase<GameManager>
         base.Awake();
         DontDestroyOnLoad(gameObject);
 
-        CreateManager();
+        // UI 테스트 시에만 활성화하여 사용
+        // CreateManager();
     }
     
     private void Start()
