@@ -1,15 +1,21 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverBG : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highscoreText;
-
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highscoreText;
+    [SerializeField] private Button retryBtn;
+    
     private void Start()
     {
         GameManager.Instance.OnGameOver += ShowGameOverBG;
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        
+        // 재시작 버튼 클릭 시 현재 Scene 다시 로드
+        retryBtn.onClick.AddListener(()=>SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
         
         // Test
         // 1초 뒤에 게임오버 되면 팝업 뜨는지 확인
@@ -28,7 +34,7 @@ public class GameOverBG : MonoBehaviour
     {
         scoreText.text = GameManager.Instance.score.ToString();
         highscoreText.text = GameManager.Instance.highScore.ToString();
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
     
     /* TestCode */
