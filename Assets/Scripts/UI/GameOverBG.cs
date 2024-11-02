@@ -21,13 +21,11 @@ public class GameOverBG : MonoBehaviour
         // 1초 뒤에 게임오버 되면 팝업 뜨는지 확인
         // Invoke("MakeGameOver", 1.0f);
     }
-    
+
     private void OnDestroy()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnGameOver -= ShowGameOverBG;
-        }
+        GameManager.Instance.OnGameOver -= ShowGameOverBG;
+        retryBtn.onClick.RemoveAllListeners();
     }
 
     private void ShowGameOverBG()

@@ -13,6 +13,12 @@ public class SettingBG : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        closeBtn.onClick.RemoveAllListeners();
+        quitBtn.onClick.RemoveAllListeners();
+    }
+
     private void OnClickQuitBtn()
     {
         #if UNITY_EDITOR    // 에디터 상에서 플레이 종료

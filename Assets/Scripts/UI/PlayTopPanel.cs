@@ -1,22 +1,15 @@
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayTopPanel : MonoBehaviour
 {
     private int _life;
-    [SerializeField] private Button settingBtn;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject lifePanel;
-    [SerializeField] private GameObject settingBg;
     
     private void Start()
     {
-        // 설정창 생성    
-        settingBg = Instantiate(settingBg, gameObject.transform.parent);
-        // 설정 버튼 클릭 시 설정 팝업 활성화
-        settingBtn.onClick.AddListener(()=>settingBg.SetActive(true));
-        
         // 시작 시 라이프 세팅
         //_life = GameManager.Instance.life;
          _life = 3; // TestCode
@@ -33,10 +26,7 @@ public class PlayTopPanel : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnScoreChanged -= UpdateScoreText;
-        }
+        GameManager.Instance.OnScoreChanged -= UpdateScoreText;
     }
 
     private void UpdateScoreText(int newScore)
