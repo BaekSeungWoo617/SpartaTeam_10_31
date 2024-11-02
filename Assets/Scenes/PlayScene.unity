@@ -590,6 +590,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a656f143-e1ca-445c-bad0-ec1c51e3f8b5
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f02c3d48-9391-46e0-b8c4-5f4befa752b0
+    m_ActionName: Player/Slide[/Keyboard/s,/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
