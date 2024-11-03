@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,15 +37,9 @@ public class GameOverBG : MonoBehaviour
 
     private void ShowGameOverBG()
     {
+        // 점수판 세팅하고 활성화
         scoreText.text = GameManager.Instance.score.ToString();
         highscoreText.text = GameManager.Instance.highScore.ToString();
         gameObject.SetActive(true);
-    }
-    
-    /* TestCode */
-    // GameOver 시 팝업 활성화되고 재시작 버튼 작동하는지 확인
-    private void MakeGameOver()
-    {
-        GameManager.Instance.GameOver();
     }
 }

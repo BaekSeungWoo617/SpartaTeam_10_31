@@ -7,10 +7,7 @@ public class PlayTopPanel : MonoBehaviour
     private int _life;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject lifePanel;
-
-    private void Awake()
-    {
-    }
+    
     private void Start()
     {
         // 시작 시 라이프 세팅
@@ -37,11 +34,12 @@ public class PlayTopPanel : MonoBehaviour
 
     private void UpdateScoreText(int newScore)
     {
-        scoreText.text = newScore.ToString();
+        scoreText.text = newScore.ToString();   // 점수판 숫자 갱신
     }
 
     private void DestroyLifeImg()
     {
+        // 라이프 패널 자식 오브젝트(라이프 이미지)를 파괴
         GameObject go = lifePanel.transform.GetChild(0).gameObject;
         if (go == null)
         {

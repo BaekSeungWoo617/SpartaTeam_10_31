@@ -18,6 +18,8 @@ public class MenuScenePanel : MonoBehaviour
         //     btn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
         // }
         
+        // 효과음과 함께 각 난이도별 Scene으로 넘어가는 이벤트 등록
+        
         easyBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
         normalBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
         hardBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);

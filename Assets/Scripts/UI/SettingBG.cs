@@ -9,6 +9,7 @@ public class SettingBG : MonoBehaviour
     
     private void Start()
     {
+        // 닫기 버튼 클릭 시 효과음과 함께 설정창 비활성화
         closeBtn.onClick.AddListener((() =>
         {
             AudioManager.Instance.PlayClickSFX();
