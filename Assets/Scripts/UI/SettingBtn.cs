@@ -12,6 +12,7 @@ public class SettingBtn : MonoBehaviour
 
     public void OnClickSettingBtn()
     {
+        AudioManager.Instance.PlayClickSFX();
         // 설정 버튼 클릭 시 설정 팝업 활성화
         settingBg.SetActive(true);
     }

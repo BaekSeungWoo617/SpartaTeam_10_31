@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class AudioManager : SingletonBase<AudioManager>
 {
@@ -18,13 +20,14 @@ public class AudioManager : SingletonBase<AudioManager>
     [Header("SFX")]
     [SerializeField] private AudioClip collisionSfx;
     [SerializeField] private AudioClip clickSfx;
-
+    
     private void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
         
         SetAudioSource();
+        SetAudioClip();
     }
 
     private void SetAudioSource()
@@ -36,6 +39,13 @@ public class AudioManager : SingletonBase<AudioManager>
         _sfxObj = new GameObject("@SFX");
         _sfxObj.transform.parent = transform;
         _sfxSource = _sfxObj.AddComponent<AudioSource>();
+    }
+
+    private void SetAudioClip()
+    {
+        ResourceLoad(out bgmClip, "Audios/BGM_Clip");
+        ResourceLoad(out collisionSfx, "Audios/SFX_Collision");
+        ResourceLoad(out clickSfx, "Audios/SFX_ButtonClick");
     }
 
     public void PlayBGM(AudioClip clip)
@@ -56,4 +66,13 @@ public class AudioManager : SingletonBase<AudioManager>
     public void PlayStartBGM() => PlayBGM(bgmClip);
     public void PlayCollsionSFX() => PlaySFX(collisionSfx);
     public void PlayClickSFX() => PlaySFX(clickSfx);
+
+    public void ResourceLoad<T>(out T instance, string path) where T : Object
+    {
+        instance = Resources.Load<T>(path);
+        if (instance == null)
+        {
+            Debug.Log($"{typeof(T).Name} not found in Resources folder at {path}.");
+        }
+    }
 }
