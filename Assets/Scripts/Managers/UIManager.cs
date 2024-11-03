@@ -18,6 +18,8 @@ public class UIManager : SingletonBase<UIManager>
             return;
         }
         CreateUIRoot();  // 없으면 UI 새로 생성
+        
+        AudioManager.Instance.PlayStartBGM();
     }
 
     // 비활성화 시 UI 삭제
