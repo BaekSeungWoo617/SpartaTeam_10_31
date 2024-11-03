@@ -4,11 +4,22 @@ using UnityEngine.UI;
 
 public class SettingBG : MonoBehaviour
 {
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider sfxSlider;
+    
     [SerializeField] private Button closeBtn;
     [SerializeField] private Button quitBtn;
     
     private void Start()
     {
+        // 초기 볼륨 값 세팅
+        bgmSlider.value = AudioManager.Instance.GetBGMVolume();
+        sfxSlider.value = AudioManager.Instance.GetSFXVolume();
+        
+        // 볼륨 슬라이더 조절 시 볼륨 조절 하도록 이벤트 등록
+        bgmSlider.onValueChanged.AddListener(AudioManager.Instance.SetBGMVolume);
+        sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
+        
         // 닫기 버튼 클릭 시 효과음과 함께 설정창 비활성화
         closeBtn.onClick.AddListener((() =>
         {
@@ -22,6 +33,9 @@ public class SettingBG : MonoBehaviour
 
     private void OnDestroy()
     {
+        bgmSlider.onValueChanged.RemoveAllListeners();
+        sfxSlider.onValueChanged.RemoveAllListeners();
+        
         closeBtn.onClick.RemoveAllListeners();
         quitBtn.onClick.RemoveAllListeners();
     }

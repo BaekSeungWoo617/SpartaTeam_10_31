@@ -63,4 +63,10 @@ public class AudioManager : SingletonBase<AudioManager>
     public void PlayStartBGM() => PlayBGM(bgmClip);
     public void PlayCollsionSFX() => PlaySFX(collisionSfx);
     public void PlayClickSFX() => PlaySFX(clickSfx);
+    
+    public float GetBGMVolume() => _bgmSource.volume;
+    public void SetBGMVolume(float volume) => _bgmSource.volume = volume;
+
+    public float GetSFXVolume() => _sfxSource.volume;
+    public void SetSFXVolume(float volume) => _sfxSource.volume = volume;
 }
