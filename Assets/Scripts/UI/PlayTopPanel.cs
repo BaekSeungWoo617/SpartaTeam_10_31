@@ -15,7 +15,7 @@ public class PlayTopPanel : MonoBehaviour
         _life = 3; // TestCode
         for (int i = 0; i < _life; i++)
         {
-            UIManager.Instance.LoadAndInstantiatePrefab("Prefabs/UI/Objects/lifeImage", lifePanel.transform);
+            CustomUtil.LoadAndInstantiatePrefab("Prefabs/UI/Objects/lifeImage", lifePanel.transform);
         }
         
         // 점수 변경되는 이벤트 구독
@@ -53,9 +53,9 @@ public class PlayTopPanel : MonoBehaviour
     // 점수 올라가면 반영되는지 테스트
     // private void Update()
     // {
-    //     IncreseScore();
+    //     IncreaseScore();
     // }
-    // private void IncreseScore()
+    // private void IncreaseScore()
     // {
     //     GameManager.Instance.score++;
     // }

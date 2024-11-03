@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,7 +34,7 @@ public class UIManager : SingletonBase<UIManager>
     {
         string folderName = SceneManager.GetActiveScene().name;
         string resourcePath = $"Prefabs/UI/{folderName}";
-        LoadAndInstantiatePrefabs(resourcePath, parent);
+        CustomUtil.LoadAndInstantiatePrefabs(resourcePath, parent);
     }
     
     // 루트 UI GameObject와 Canvas 구조를 생성
@@ -60,37 +59,5 @@ public class UIManager : SingletonBase<UIManager>
         canvasObject.transform.SetParent(_rootUI.transform);
         
         LoadSceneUI(canvasObject.transform);
-    }
-    
-    // Resources 폴더에서 이름으로 지정된 하나의 프리팹을 로드하고 추가
-    public void LoadAndInstantiatePrefab(string prefabName, Transform parent)
-    {
-        GameObject prefab = Resources.Load<GameObject>(prefabName);
-
-        if (prefab != null)
-        {
-            GameObject instance = Instantiate(prefab, parent);
-            instance.name = prefab.name;
-        }
-        else
-        {
-            Debug.Log($"Prefab '{prefabName}' not found in Resources folder.");
-        }
-    }
-    
-    // Resources의 지정된 폴더에서 모든 프리팹을 로드하고 인스턴스화
-    public void LoadAndInstantiatePrefabs(string resourceFolder, Transform parent)
-    {
-        GameObject[] prefabs = Resources.LoadAll<GameObject>(resourceFolder);
-    
-        foreach (GameObject prefab in prefabs)
-        {
-            if (prefab != null)
-            {
-                GameObject go = Instantiate(prefab, parent);
-                go.name = prefab.name;
-                go.SetActive(true);
-            }
-        }
     }
 }
