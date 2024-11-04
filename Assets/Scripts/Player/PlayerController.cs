@@ -106,6 +106,11 @@ public class PlayerController : MonoBehaviour
     private void ApplyMove()
     {
         Vector3 moveVector = transform.forward * _increaseSpeed + transform.right * _moveInput.x * _horizontalSpeed;
+        
+        Vector3 position = transform.position;
+        position.x = Mathf.Clamp(position.x, -10f, 10f);
+        transform.position = position;
+
         moveVector.y = _rigidbody.velocity.y;
         _rigidbody.velocity = moveVector;
     }
