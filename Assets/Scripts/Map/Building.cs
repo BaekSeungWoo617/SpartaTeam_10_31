@@ -27,6 +27,10 @@ public class Building1 : MonoBehaviour
         {
             direction = new Vector3(-1, 0, 0);
         }
+        else
+        {
+            direction = new Vector3(0, 0, -1);
+        }
         transform.Translate(direction * moveSpeed * Time.deltaTime);
         if (this.transform.position.z < -120)
         {
