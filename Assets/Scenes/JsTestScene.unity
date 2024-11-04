@@ -12543,7 +12543,7 @@ GameObject:
   - component: {fileID: 1868964114}
   - component: {fileID: 1868964115}
   - component: {fileID: 1868964117}
-  - component: {fileID: 1868964116}
+  - component: {fileID: 1868964118}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -12621,7 +12621,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1868964116}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -12637,7 +12637,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1868964116}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -12653,7 +12653,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1868964116}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnSlide
         m_Mode: 0
@@ -12672,22 +12672,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1868964116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868964112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 337827d0d41d66841a6f8182763df394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _verticalSpeed: 0
-  _horizontalSpeed: 3
-  _jumpForce: 5
-  _jumpCount: 2
 --- !u!114 &1868964117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12701,6 +12685,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+--- !u!114 &1868964118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868964112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e969494b9669304cbf25fd94adfe2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _verticalSpeed: 0
+  _horizontalSpeed: 3
+  _jumpForce: 5
+  _jumpCount: 0
 --- !u!1 &1920702311
 GameObject:
   m_ObjectHideFlags: 0
