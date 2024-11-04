@@ -1,32 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverBG : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highscoreText;
-
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highscoreText;
+    [SerializeField] private Button retryBtn;
+    
     private void Start()
     {
         GameManager.Instance.OnGameOver += ShowGameOverBG;
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        
+        // 재시작 버튼 클릭 시
+        // 클릭 소리 재생 & 현재 Scene 다시 로드
+        retryBtn.onClick.AddListener(OnClickRetryBtn);
+        
+        // Test
+        // 1초 뒤에 게임오버 되면 팝업 뜨는지 확인
+        // Invoke("MakeGameOver", 1.0f);
     }
-    
+
     private void OnDestroy()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnGameOver -= ShowGameOverBG;
-        }
+        GameManager.Instance.OnGameOver -= ShowGameOverBG;
+        retryBtn.onClick.RemoveAllListeners();
+    }
+
+    private void OnClickRetryBtn()
+    {
+        AudioManager.Instance.PlayClickSFX();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void ShowGameOverBG()
     {
+        // 점수판 세팅하고 활성화
         scoreText.text = GameManager.Instance.score.ToString();
         highscoreText.text = GameManager.Instance.highScore.ToString();
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
 }

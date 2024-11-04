@@ -20,6 +20,7 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private int _playerLevel;
     
     public event Action<int> OnScoreChanged;
+    public event Action OnLifeChanged;
     public event Action OnGameOver;
 
     public int score
@@ -39,7 +40,16 @@ public class GameManager : SingletonBase<GameManager>
     public int life
     {
         get { return _life; }
-        set { _life = value; }
+        set
+        {
+            _life = value;
+            OnLifeChanged?.Invoke();
+            if (_life <= 0)
+            {
+                // ResetValue(); // Test Code
+                OnGameOver?.Invoke();
+            }
+        }
     }
     public int highScore
     {
@@ -74,18 +84,23 @@ public class GameManager : SingletonBase<GameManager>
     }
     public void GameOver()
     {
+        // Comment For UI Test
         if (_score > _highScore)
         {
             _highScore = _score;
         }
-        OnGameOver?.Invoke();
         ResetValue();
     }
     public void ResetValue()
     {
+        // For UI Test
+        // if (_score > _highScore)
+        // {
+        //     _highScore = _score;
+        // }
         _score = 0;
         _huddleCount = 0;
-        _life = 5;
+        _life = 3;
     }
     public void AddScore(int value)
     {

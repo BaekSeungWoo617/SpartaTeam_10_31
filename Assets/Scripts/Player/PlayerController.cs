@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -114,4 +115,12 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(transform.position + transform.up * 0.1f, Vector3.down);
         return Physics.Raycast(ray, groundCheckDistance, groundLayer);
     }
+
+    /* TestCode */
+    // 장애물 트리거 시에 생명 줄고 소리나는 지 확인
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     AudioManager.Instance.PlayCollsionSFX();
+    //     GameManager.Instance.life--;
+    // }
 }
