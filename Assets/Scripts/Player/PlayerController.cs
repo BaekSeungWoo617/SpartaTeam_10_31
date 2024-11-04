@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     private float groundCheckDistance = 0.3f;
     [SerializeField] private float _jumpForce = 5.0f;
     [SerializeField] private int _jumpCount = 0;
-    private bool _isJumping = false;
 
     private float _time = 0.0f;
 
@@ -85,7 +84,7 @@ public class PlayerController : MonoBehaviour
             _jumpCount = 0;
         }
 
-        if(context.phase == InputActionPhase.Started)
+        if(context.phase == InputActionPhase.Started && _jumpCount < 2)
         {
             _jumpCount += 1;
 
