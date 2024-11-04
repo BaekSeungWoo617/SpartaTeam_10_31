@@ -12,8 +12,6 @@ public class RoadManager : SingletonBase<RoadManager>
     private GameObject EndRoad;
     
     public HurdleSpawner hurdleSpawner;
-
-    public HurdleSpawner hurdleSpawner;
     
     private float spawnInterval = 2.0f;
     private float timer;
