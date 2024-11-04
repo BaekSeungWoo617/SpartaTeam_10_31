@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : SingletonBase<RoadManager>
+public class BuildingManager : SingletonBase<BuildingManager>
 {
     private List<GameObject> buildingInstances = new List<GameObject>();
     private GameObject[] buildingLeft;

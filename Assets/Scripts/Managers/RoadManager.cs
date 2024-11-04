@@ -13,6 +13,8 @@ public class RoadManager : SingletonBase<RoadManager>
     
     public HurdleSpawner hurdleSpawner;
 
+    public HurdleSpawner hurdleSpawner;
+    
     private float spawnInterval = 2.0f;
     private float timer;
     protected override void Awake()
