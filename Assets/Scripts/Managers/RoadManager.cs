@@ -32,7 +32,7 @@ public class RoadManager : SingletonBase<RoadManager>
 
         if (roadPrefab == null)
         {
-            Debug.LogError("오브젝트 불러오기 애러");
+            Debug.LogError("?�브?�트 불러?�기 ?�러");
         }
     }
 
