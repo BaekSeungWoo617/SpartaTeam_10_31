@@ -66,6 +66,8 @@ public class GameManager : SingletonBase<GameManager>
         base.Awake();
         RoadManager roadManager = RoadManager.Instance;
         roadManager.transform.parent = this.transform;
+        BuildingManager buildingManager = BuildingManager.Instance;
+        buildingManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
     }
     
