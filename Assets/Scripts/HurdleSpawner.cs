@@ -4,8 +4,7 @@ public class HurdleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject hurdlePrefab;
     [SerializeField] private int maxHurdlesPerRoad = 1; // 도로 한 블럭 당 최대 장애물 리스폰 개수
-    [SerializeField] private float roadWidth = 9.0f;    // 도로 폭(회색 부분)
-
+    [SerializeField] private float roadWidth = 8.5f;    // 도로 폭(회색 부분)
     [SerializeField] private float minX;    // 도로 양끝 제한
     [SerializeField] private float maxX;
     

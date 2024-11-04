@@ -7558,7 +7558,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 4193679029429222064, guid: 5cc64745e849a684fbb2ddff396d2b7e, type: 3}
       propertyPath: roadWidth
       value: 8.5
@@ -7572,38 +7571,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cc64745e849a684fbb2ddff396d2b7e, type: 3}
-=======
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3171621950689010708, guid: 5cc64745e849a684fbb2ddff396d2b7e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1487659391}
-  m_SourcePrefab: {fileID: 100100000, guid: 5cc64745e849a684fbb2ddff396d2b7e, type: 3}
---- !u!1 &1487659385 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3171621950689010708, guid: 5cc64745e849a684fbb2ddff396d2b7e, type: 3}
-  m_PrefabInstance: {fileID: 749067765}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1487659391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487659385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab532a94b125d64ab9e457af22127c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hurdlePrefab: {fileID: 4766699202679359689, guid: 933b379056a2b2a40ad4ca56fcf2652d, type: 3}
-  maxHurdlesPerRoad: 1
-  roadWidth: 9
-  minX: 0
-  maxX: 0
->>>>>>> parent of b588145 (Revert "Merge branch 'DevNotErr11_01' into BaekSeungWoo11_04")
 --- !u!1 &1588957831
 GameObject:
   m_ObjectHideFlags: 0
