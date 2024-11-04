@@ -2,28 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : SingletonBase<RoadManager>
+public class Building1 : MonoBehaviour
 {
-    private List<GameObject> buildingPool;
-    private GameObject[] buildingPrefab;
-
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-    }
+ float moveSpeed;
+    Vector3 moveDirection = new Vector3(0,0,-1);
     private void Start()
     {
-        GameObject[] roadPrefabs = Resources.LoadAll<GameObject>("Prefabs/Road");
-
-        // 로드된 프리팹들을 리스트에 인스턴스화하여 추가
-        foreach (GameObject roadPrefab in roadPrefabs)
+        moveSpeed = GameManager.Instance.roadMoveSpeed;
+    }
+    private void Update()
+    {
+    }
+    void FixedUpdate()
+    {
+        BuildingMove(moveDirection);
+    }
+    void BuildingMove(Vector3 direction)
+    {      
+        transform.Translate(direction * moveSpeed * Time.deltaTime);   
+        if(this.transform.position.z < -120)
         {
-            // 인스턴스화
-            GameObject roadInstance = Instantiate(roadPrefab);
-            // 리스트에 추가
-            roadInstances.Add(roadInstance);
+            this.transform.position += new Vector3(0,0,220);
+        }
+    }
+    void BuildingSetFalse()
+    {
+        if (this.transform.position.z < -120)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
