@@ -6,7 +6,7 @@ public class GameManager : SingletonBase<GameManager>
 {
     enum GameLevel
     {
-        Easy,
+        Easy = 1,
         Normal,
         Hard
     }
@@ -60,6 +60,11 @@ public class GameManager : SingletonBase<GameManager>
         get { return _roadMoveSpeed; }
         set { _roadMoveSpeed = value; }
     }
+    public int playerLevel
+    {
+        get { return _playerLevel; }
+        set { _playerLevel = value; }
+    }
     
     protected override void Awake()
     {
@@ -68,6 +73,8 @@ public class GameManager : SingletonBase<GameManager>
         roadManager.transform.parent = this.transform;
         BuildingManager buildingManager = BuildingManager.Instance;
         buildingManager.transform.parent = this.transform;
+        ObstacleManager obstacleManager = ObstacleManager.Instance;
+        obstacleManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
     }
     

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363140097249363623}
   - component: {fileID: 502994959007723379}
+  - component: {fileID: -3111566237050832982}
   m_Layer: 0
   m_Name: Rock_Small
   m_TagString: Huddle
@@ -48,12 +49,24 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.6
   m_Center: {x: 0, y: -0.1, z: 0}
+--- !u!114 &-3111566237050832982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681893237989901480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d78afb9ef833f344badda089d3c3957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5448451097426376781
 GameObject:
   m_ObjectHideFlags: 0

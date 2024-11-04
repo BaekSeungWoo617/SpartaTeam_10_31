@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2906876132508939285}
   - component: {fileID: 120121904994920841}
+  - component: {fileID: 2436053828350058340}
   m_Layer: 0
   m_Name: SignStop
   m_TagString: Huddle
@@ -48,12 +49,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.2, y: 2.4, z: 0.2}
   m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &2436053828350058340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723838894085426131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d78afb9ef833f344badda089d3c3957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7372919991039508072
 GameObject:
   m_ObjectHideFlags: 0

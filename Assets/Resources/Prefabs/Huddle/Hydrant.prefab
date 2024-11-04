@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5347330585369260788}
   - component: {fileID: 7870083444345371585}
+  - component: {fileID: 518424210232482317}
   m_Layer: 0
   m_Name: Hydrant
   m_TagString: Huddle
@@ -131,7 +132,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -139,3 +140,15 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &518424210232482317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2583203288486261572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d78afb9ef833f344badda089d3c3957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

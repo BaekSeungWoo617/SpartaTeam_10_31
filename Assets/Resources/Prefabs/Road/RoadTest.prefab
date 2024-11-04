@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1129942898397928186}
   - component: {fileID: 24593907686211736}
   - component: {fileID: 3493960182043544930}
-  - component: {fileID: 4193679029429222064}
   m_Layer: 6
   m_Name: RoadTest
   m_TagString: Road
@@ -119,20 +118,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6894bf040372f41a759dce7a63d803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4193679029429222064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3171621950689010708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab532a94b125d64ab9e457af22127c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hurdlePrefab: {fileID: 4766699202679359689, guid: 933b379056a2b2a40ad4ca56fcf2652d, type: 3}
-  maxHurdlesPerRoad: 1
-  roadWidth: 8.5
-  minX: 0
-  maxX: 0
