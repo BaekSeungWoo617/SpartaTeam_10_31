@@ -23,6 +23,8 @@ public class GameManager : SingletonBase<GameManager>
     public event Action OnLifeChanged;
     public event Action OnGameOver;
 
+    private float timer = 0f;
+    private float timerSet = 2f;
     public int score
     {
         get { return _score; }
@@ -75,8 +77,22 @@ public class GameManager : SingletonBase<GameManager>
     {
         _playerLevel = (int)GameLevel.Easy;
         GameStartSettings(_playerLevel);
+       
     }
-    
+    private void FixedUpdate()
+    {
+        timer += Time.fixedDeltaTime; // 시간 누적
+
+        if (timer >= timerSet)
+        {
+            timer = 0f; // 타이머 초기화
+            AddMoveSpeed(); // 메서드 호출
+        }
+    }
+    public void AddMoveSpeed()
+    {
+        _roadMoveSpeed += 1f;
+    }
     public void GameStartSettings(int level)
     {
         _life = 3 - level;
