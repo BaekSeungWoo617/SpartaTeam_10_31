@@ -26,6 +26,11 @@ public class Road : MonoBehaviour
     {
         if (this.transform.position.z < -120)
         {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            
             gameObject.SetActive(false);
             gameObject.transform.position = Vector3.zero;
         }

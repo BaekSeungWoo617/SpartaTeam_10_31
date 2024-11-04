@@ -10,6 +10,8 @@ public class RoadManager : SingletonBase<RoadManager>
     private GameObject prevRoad;
     private GameObject StartRoad;
     private GameObject EndRoad;
+    
+    public HurdleSpawner hurdleSpawner;
 
     private float spawnInterval = 2.0f;
     private float timer;
@@ -19,6 +21,11 @@ public class RoadManager : SingletonBase<RoadManager>
 
         SetRoadPrefab();
         InitializeObjectPool();
+        
+        if (hurdleSpawner == null)
+        {
+            hurdleSpawner = FindObjectOfType<HurdleSpawner>();
+        }
     }
     private void Start()
     {
@@ -32,7 +39,7 @@ public class RoadManager : SingletonBase<RoadManager>
 
         if (roadPrefab == null)
         {
-            Debug.LogError("?�브?�트 불러?�기 ?�러");
+            Debug.LogError("오브젝트 불러오기 애러");
         }
     }
 
@@ -91,6 +98,15 @@ public class RoadManager : SingletonBase<RoadManager>
         }
         else road.transform.position = new Vector3(0, 0, 0);
         prevRoad = road;
+        
+        if (hurdleSpawner != null)
+        {
+            hurdleSpawner.SpawnHurdlesOnRoad(road);
+        }
+        else
+        {
+            Debug.Log("HurdleSpawner not found.");
+        }
     }
 
     public void ReleaseRoad(GameObject road)

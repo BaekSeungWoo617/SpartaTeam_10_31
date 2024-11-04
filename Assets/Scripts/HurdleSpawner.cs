@@ -1,37 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HurdleSpawner : MonoBehaviour
 {
-    public GameObject[] hurdlePrefabs; // Àå¾Ö¹° ÇÁ¸®ÆÕ ¹è¿­
-    public float spawnInterval; // Àå¾Ö¹° ½ºÆù °£°İ
-    public float spawnPositionZ; // Àå¾Ö¹° ½ºÆù À§Ä¡(ZÃà)
-    public float minX; // ½ºÆù À§Ä¡ ÃÖ¼Ò X°ª
-    public float maxX; // ½ºÆù À§Ä¡ ÃÖ´ë X°ª
-
-    void Start()
+    [SerializeField] private GameObject hurdlePrefab;
+    [SerializeField] private int maxHurdlesPerRoad = 1; // ë„ë¡œ í•œ ë¸”ëŸ­ ë‹¹ ìµœëŒ€ ì¥ì• ë¬¼ ë¦¬ìŠ¤í° ê°œìˆ˜
+    [SerializeField] private float roadWidth = 9.0f;    // ë„ë¡œ í­(íšŒìƒ‰ ë¶€ë¶„)
+    [SerializeField] private float minX;    // ë„ë¡œ ì–‘ë ì œí•œ
+    [SerializeField] private float maxX;
+    
+    public void SpawnHurdlesOnRoad(GameObject road)
     {
-        StartCoroutine(SpawnHurdle());
-    }
-
-    IEnumerator SpawnHurdle()
-    {
-        while (true)
+        Renderer roadRenderer = road.GetComponent<Renderer>();
+        if (roadRenderer == null)
         {
-            // XÃàÀÇ ¹«ÀÛÀ§ À§Ä¡ °áÁ¤
-            float randomX = Random.Range(minX, maxX);
-            Vector3 spawnPosition = new Vector3(randomX, 0, spawnPositionZ);
+            Debug.Log("Road doesn't have a Renderer component.");
+            return;
+        }
 
-            // ¹«ÀÛÀ§·Î Àå¾Ö¹° ÇÁ¸®ÆÕ ¼±ÅÃ
-            int randomIndex = Random.Range(0, hurdlePrefabs.Length);
-            GameObject selectedPrefab = hurdlePrefabs[randomIndex];
+        Bounds roadBounds = roadRenderer.bounds;
 
-            // Àå¾Ö¹° »ı¼º
-            Instantiate(selectedPrefab, spawnPosition, Quaternion.identity);
+        int hurdlesToSpawn = Random.Range(1, maxHurdlesPerRoad + 1);
 
-            // ´ÙÀ½ ½ºÆù±îÁö ´ë±â
-            yield return new WaitForSeconds(spawnInterval);
+        for (int i = 0; i < hurdlesToSpawn; i++)
+        {
+            minX = roadBounds.center.x - roadWidth / 2;
+            maxX = roadBounds.center.x + roadWidth / 2;
+            float randX = Random.Range(minX, maxX);
+
+            float randZ = Random.Range(roadBounds.min.z, roadBounds.max.z);
+
+            Vector3 spawnPosition = new Vector3(randX, roadBounds.max.y, randZ);
+
+            GameObject hurdle = Instantiate(hurdlePrefab, spawnPosition, Quaternion.identity);
+
+            hurdle.transform.SetParent(road.transform);
         }
     }
 }
