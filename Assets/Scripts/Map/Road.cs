@@ -27,7 +27,6 @@ public class Road : MonoBehaviour
         if (this.transform.position.z < -120)
         {
             gameObject.SetActive(false);
-            gameObject.transform.position = Vector3.zero;
         }
     }
 }
