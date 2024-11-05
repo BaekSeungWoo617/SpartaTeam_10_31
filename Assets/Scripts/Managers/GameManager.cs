@@ -154,7 +154,6 @@ public class GameManager : SingletonBase<GameManager>
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Scene Loaded");
         GameStartSettings();
     }
     void SaveGameData()
