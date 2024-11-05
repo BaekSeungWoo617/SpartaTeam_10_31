@@ -12,6 +12,16 @@ public static class CustomUtil
         return instance;
     }
     
+    public static T[] ResourceLoadAll<T>(string path) where T : Object
+    {
+        T[] instance = Resources.LoadAll<T>(path);
+        if (instance == null)
+        {
+            Debug.Log($"{typeof(T).Name} not found in Resources folder at {path}.");
+        }
+        return instance;
+    }
+    
     // Resources 폴더에서 이름으로 지정된 하나의 프리팹을 로드하고 추가
     public static void LoadAndInstantiatePrefab(string prefabName, Transform parent)
     {
