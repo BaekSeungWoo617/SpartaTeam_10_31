@@ -33,6 +33,7 @@ public class GameOverBG : MonoBehaviour
     {
         AudioManager.Instance.PlayClickSFX();
         SceneManager.LoadScene("PlayScene");
+        Time.timeScale = 1f;
     }
 
     private void ShowGameOverBG()

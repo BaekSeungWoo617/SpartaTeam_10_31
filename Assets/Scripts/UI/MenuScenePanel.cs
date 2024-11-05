@@ -23,18 +23,27 @@ public class MenuScenePanel : MonoBehaviour
         easyBtn.onClick.AddListener((() =>
         {
             GameManager.Instance.playerLevel = 1;
+            GameManager.Instance.GameStartSettings(1);
             OnClickMenuBtn();
+            Time.timeScale = 1f;
         }));
         normalBtn.onClick.AddListener((() =>
         {
             GameManager.Instance.playerLevel = 2;
+            GameManager.Instance.GameStartSettings(2);
             OnClickMenuBtn();
+            Time.timeScale = 1f;
+
         }));
         hardBtn.onClick.AddListener((() =>
         {
             GameManager.Instance.playerLevel = 3;
+            GameManager.Instance.GameStartSettings(3);
             OnClickMenuBtn();
+            Time.timeScale = 1f;
+
         }));
+        
     }
 
     private void OnDestroy()
@@ -48,5 +57,6 @@ public class MenuScenePanel : MonoBehaviour
     {
         AudioManager.Instance.PlayClickSFX();
         SceneManager.LoadScene("PlayScene");
+        
     }
 }

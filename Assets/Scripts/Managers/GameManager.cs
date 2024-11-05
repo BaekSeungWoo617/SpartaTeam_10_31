@@ -135,6 +135,7 @@ public class GameManager : SingletonBase<GameManager>
     public void AddScore(int value)
     {
         _score += value;
+        // TODO : 점수 올라가는 UI 구현(현재)
         if (_score > _highScore)
         {
             _highScore = _score;
