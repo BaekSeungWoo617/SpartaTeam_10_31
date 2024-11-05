@@ -51,16 +51,5 @@ public class PlayTopPanel : MonoBehaviour
             return;
         }
         Destroy(go);
-    }
-    
-    /* TestCode */
-    // 점수 올라가면 반영되는지 테스트
-    // private void Update()
-    // {
-    //     IncreaseScore();
-    // }
-    // private void IncreaseScore()
-    // {
-    //     GameManager.Instance.score++;
-    // }
+    }   
 }

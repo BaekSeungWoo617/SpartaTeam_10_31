@@ -8,7 +8,6 @@ using UnityEngine.Playables;
 public class GameManager : SingletonBase<GameManager>
 {
     [SerializeField] private int _score;
-    [SerializeField] private int _huddleCount;
     [SerializeField] private int _life;
     [SerializeField] private int _highScore;
     [SerializeField] private float _roadMoveSpeed;
@@ -58,12 +57,6 @@ public class GameManager : SingletonBase<GameManager>
         }
     }
 
-    public int huddleCount
-    {
-        get { return _huddleCount; }
-        set { _huddleCount = value; }
-    }
-
     public int life
     {
         get { return _life; }
@@ -75,8 +68,6 @@ public class GameManager : SingletonBase<GameManager>
             {
                 Time.timeScale = 0.0f;  // 일시 정지
                 OnGameOver?.Invoke();
-                // ResetValue(); // Test Code
-
             }
         }
     }
@@ -100,13 +91,7 @@ public class GameManager : SingletonBase<GameManager>
     
     protected override void Awake()
     {
-        base.Awake();
-        // RoadManager roadManager = RoadManager.Instance;
-        // roadManager.transform.parent = this.transform;
-        // BuildingManager buildingManager = BuildingManager.Instance;
-        // buildingManager.transform.parent = this.transform;
-        // ObstacleManager obstacleManager = ObstacleManager.Instance;
-        // obstacleManager.transform.parent = this.transform;
+        base.Awake();       
         DontDestroyOnLoad(gameObject);
         
     }
@@ -119,8 +104,6 @@ public class GameManager : SingletonBase<GameManager>
     private void Start()
     {
         LoadGameData();
-        //_playerLevel = (int)GameLevel.Easy;
-        //GameStartSettings(_playerLevel);
         GameStartSettings();
 
         Debug.Log("Start");
@@ -133,9 +116,7 @@ public class GameManager : SingletonBase<GameManager>
         if (_powerTime <= 0.0f)
         {
             IsPower = false;
-        }
-        Debug.Log(GetPowerGauge());
-        Debug.Log(_isPower);
+        }       
     }
     
     private void OnDisable()
@@ -146,13 +127,11 @@ public class GameManager : SingletonBase<GameManager>
     {
         //SaveGameData();
     }
-    // public void GameStartSettings(int level)
     public void GameStartSettings()
     {
         _life = 4 - _playerLevel;
         Debug.Log(_life);
         _score = 0;
-        _huddleCount = 0;
         _roadMoveSpeed = 10f + (_playerLevel * 5);
         Time.timeScale = 1.0f;
     }
@@ -160,21 +139,6 @@ public class GameManager : SingletonBase<GameManager>
     public void GameOver()
     {
         Time.timeScale = 0.0f;
-
-        // Comment For UI Test
-        // if (_score > _highScore)
-        // {
-        //     _highScore = _score;
-        // }
-        // ResetValue();
-    }
-
-    public void ResetValue()
-    {
-        // For UI Test
-        _score = 0;
-        _huddleCount = 0;
-        _life = 4 - _playerLevel;
     }
 
     public void AddScore(int value)
@@ -185,12 +149,6 @@ public class GameManager : SingletonBase<GameManager>
             _highScore = _score;
         }
         OnScoreChanged?.Invoke(_score);
-    }
-
-    public void AddHuddleCount(int value)
-    {
-        _huddleCount += value;
-        AddScore(value);
     }
 
     public void AddLife(int value)
@@ -205,8 +163,7 @@ public class GameManager : SingletonBase<GameManager>
     }
     void SaveGameData()
     {
-        //gameData.userName
-        //gameData.
+        //ToDO : 업적 데이터
 
         string json = JsonUtility.ToJson(gameData);
         File.WriteAllText(Application.persistentDataPath + "/gameData.json", json);

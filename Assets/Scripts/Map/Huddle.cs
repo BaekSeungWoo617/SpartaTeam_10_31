@@ -22,15 +22,15 @@ public class Huddle : MonoBehaviour
         if (this.transform.position.z < 0 && isHuddleScore)
         {
             isHuddleScore = false;
-            manager.AddHuddleCount(1);         
+            manager.AddScore(1);
         }
     }
-    
+
     private void HuddleMove(Vector3 direction)
     {
         // moveSpeed에 따라 moveDirection 방향으로 장애물을 이동
         transform.Translate(direction * moveSpeed * Time.deltaTime);
-        
+
         // 일정 Z축 위치를 지나가면(카메라 촬영 범위 벗어나면) 위치 재설정
         if (this.transform.position.z < -120)
         {
@@ -39,9 +39,5 @@ public class Huddle : MonoBehaviour
             isHuddleScore = true;
         }
     }
-    
-    // void HuddleSetFalse()
-    // {
-    //     gameObject.SetActive(false);
-    // }
 }
+
