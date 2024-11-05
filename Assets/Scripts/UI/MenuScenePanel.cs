@@ -11,25 +11,9 @@ public class MenuScenePanel : MonoBehaviour
     private void Awake()
     {
         // 효과음과 함께 각 난이도별 Scene으로 넘어가는 이벤트 등록
-        
-        easyBtn.onClick.AddListener((() =>
-        {
-            GameManager.Instance.playerLevel = 1;
-            Time.timeScale = 1.0f;  // 일시정지 해제
-            OnClickMenuBtn();
-        }));
-        normalBtn.onClick.AddListener((() =>
-        {
-            GameManager.Instance.playerLevel = 2;
-            Time.timeScale = 1.0f;  // 일시정지 해제
-            OnClickMenuBtn();
-        }));
-        hardBtn.onClick.AddListener((() =>
-        {
-            GameManager.Instance.playerLevel = 3;
-            Time.timeScale = 1.0f;  // 일시정지 해제
-            OnClickMenuBtn();
-        }));
+        easyBtn.onClick.AddListener(()=>OnClickMenuBtn(1));
+        normalBtn.onClick.AddListener(()=>OnClickMenuBtn(2));
+        hardBtn.onClick.AddListener(()=>OnClickMenuBtn(3));
     }
 
     private void OnDestroy()
@@ -39,9 +23,11 @@ public class MenuScenePanel : MonoBehaviour
         hardBtn.onClick.RemoveAllListeners();
     }
 
-    private void OnClickMenuBtn()
+    private void OnClickMenuBtn(int level)
     {
         AudioManager.Instance.PlayClickSFX();
+        GameManager.Instance.playerLevel = level;
+        Time.timeScale = 1.0f;  // 일시정지 해제
         SceneManager.LoadScene("PlayScene");
     }
 }

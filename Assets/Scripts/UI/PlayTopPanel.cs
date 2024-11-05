@@ -26,6 +26,7 @@ public class PlayTopPanel : MonoBehaviour
         {
             CustomUtil.LoadAndInstantiatePrefab("Prefabs/UI/Objects/lifeImage", lifePanel.transform);
         }
+        scoreText.text = "0";   // 점수판 숫자 초기화
     }
 
     private void OnDestroy()
