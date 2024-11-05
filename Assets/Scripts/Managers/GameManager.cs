@@ -105,9 +105,6 @@ public class GameManager : SingletonBase<GameManager>
     {
         LoadGameData();
         GameStartSettings();
-
-        Debug.Log("Start");
-
     }
     private void Update()
     {
@@ -130,7 +127,6 @@ public class GameManager : SingletonBase<GameManager>
     public void GameStartSettings()
     {
         _life = 4 - _playerLevel;
-        Debug.Log(_life);
         _score = 0;
         _roadMoveSpeed = 10f + (_playerLevel * 5);
         Time.timeScale = 1.0f;
