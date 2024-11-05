@@ -126,8 +126,6 @@ public class PlayerController : MonoBehaviour
         return Physics.Raycast(ray, groundCheckDistance, groundLayer);
     }
 
-    /* TestCode */
-    // ?¥ì• ë¬??¸ë¦¬ê±??œì— ?ëª… ì¤„ê³  ?Œë¦¬?˜ëŠ” ì§€ ?•ì¸
     private void OnTriggerEnter(Collider other)
     {
         if (GameManager.Instance.IsPower)

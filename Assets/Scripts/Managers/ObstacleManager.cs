@@ -18,13 +18,6 @@ public class ObstacleManager : SingletonBase<ObstacleManager>
         // "Prefabs/Building"에서 모든 건물 프리팹 로드
         hurdlePrefabs = CustomUtil.ResourceLoadAll<GameObject>("Prefabs/Huddle");
 
-        /* 플레이어 레벨(선택한 난이도)에 따라 장애물 개수 변동 */
-        // Easy(10), Normal(15), Hard(20) 
-        /* TestCode */
-        // GameManager.Instance.playerLevel = 1;
-        // GameManager.Instance.playerLevel = 2;
-        // GameManager.Instance.playerLevel = 3;
-
         int lev = GameManager.Instance.playerLevel;
         hurdlePerRoad = 5 * (lev + 1);
         
@@ -50,17 +43,6 @@ public class ObstacleManager : SingletonBase<ObstacleManager>
             // 인스턴스화
             GameObject hurdleInstance = Instantiate(randomPrefab, hurdlePosition, Quaternion.identity);
 
-            // 리스트에 추가
-            // hurdleInstances.Add(hurdleInstance);
         }
     }
-
-    // public void ResetHurdles()
-    // {
-    //     foreach (var hurdle in hurdleInstances)
-    //     {
-    //         hurdle.SetActive(true);
-    //         hurdle.transform.position = new Vector3(Random.Range(-5f, 5f), 0, 100);
-    //     }
-    // }
 }
