@@ -114,10 +114,6 @@ public class GameManager : SingletonBase<GameManager>
     public void ResetValue()
     {
         // For UI Test
-        if (_score > _highScore)
-        {
-            _highScore = _score;
-        }
         _score = 0;
         _huddleCount = 0;
         _life = 4 - _playerLevel;
@@ -126,11 +122,16 @@ public class GameManager : SingletonBase<GameManager>
     public void AddScore(int value)
     {
         _score += value;
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+        }
     }
 
     public void AddHuddleCount(int value)
     {
         _huddleCount += value;
+        AddScore(value);
     }
 
     public void AddLife(int value)
