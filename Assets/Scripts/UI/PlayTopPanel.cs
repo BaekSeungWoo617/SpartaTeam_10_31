@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,21 +10,24 @@ public class PlayTopPanel : MonoBehaviour
     
     private void Awake()
     {
-        // 시작 시 라이프 세팅
-         _life = GameManager.Instance.life;
-         Debug.Log(_life);
-        //_life = 3; // TestCode
-        for (int i = 0; i < _life; i++)
-        {
-            CustomUtil.LoadAndInstantiatePrefab("Prefabs/UI/Objects/lifeImage", lifePanel.transform);
-        }
-        
         // 점수 변경되는 이벤트 구독
         GameManager.Instance.OnScoreChanged += UpdateScoreText;
         // 라이프 변경되는 이벤트 구독
         GameManager.Instance.OnLifeChanged += DestroyLifeImg;
         // 시작 시 점수판 초기화
         UpdateScoreText(GameManager.Instance.score);
+    }
+
+    private void Start()
+    {
+        // 시작 시 라이프 세팅
+        _life = GameManager.Instance.life;
+        Debug.Log(_life);
+        //_life = 3; // TestCode
+        for (int i = 0; i < _life; i++)
+        {
+            CustomUtil.LoadAndInstantiatePrefab("Prefabs/UI/Objects/lifeImage", lifePanel.transform);
+        }
     }
 
     private void OnDestroy()

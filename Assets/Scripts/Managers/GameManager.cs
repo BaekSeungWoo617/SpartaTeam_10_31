@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class GameManager : SingletonBase<GameManager>
 {
     enum GameLevel
@@ -29,7 +31,6 @@ public class GameManager : SingletonBase<GameManager>
         set
         {
             _score = value;
-            OnScoreChanged?.Invoke(_score);
         }
     }
 
@@ -49,8 +50,9 @@ public class GameManager : SingletonBase<GameManager>
             if (_life <= 0)
             {
                 Time.timeScale = 0.0f;  // 일시 정지
-                ResetValue(); // Test Code
                 OnGameOver?.Invoke();
+                // ResetValue(); // Test Code
+
             }
         }
     }
@@ -82,12 +84,19 @@ public class GameManager : SingletonBase<GameManager>
         // ObstacleManager obstacleManager = ObstacleManager.Instance;
         // obstacleManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
+        
     }
-    
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
     private void Start()
     {
         _playerLevel = (int)GameLevel.Easy;
-        GameStartSettings(_playerLevel);
+        //GameStartSettings(_playerLevel);
+        GameStartSettings();
 
         Debug.Log("Start");
     }
@@ -95,12 +104,22 @@ public class GameManager : SingletonBase<GameManager>
     {
         Debug.Log(_score);
     }
-    public void GameStartSettings(int level)
+    
+    private void OnDisable()
     {
+        SceneManager.sceneLoaded -= SceneLoaded;
+    }
+    
+   // public void GameStartSettings(int level)
+    public void GameStartSettings()
+    {
+        int level = 1;
         _life = 4 - level;
+        Debug.Log(_life);
         _score = 0;
         _huddleCount = 0;
         _roadMoveSpeed = 10f - (level * 2);
+        Time.timeScale = 1.0f;
     }
 
     public void GameOver()
@@ -130,6 +149,7 @@ public class GameManager : SingletonBase<GameManager>
         {
             _highScore = _score;
         }
+        OnScoreChanged?.Invoke(_score);
     }
 
     public void AddHuddleCount(int value)
@@ -141,5 +161,11 @@ public class GameManager : SingletonBase<GameManager>
     public void AddLife(int value)
     {
         _life += value;
+    }
+
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene Loaded");
+        GameStartSettings();
     }
 }
