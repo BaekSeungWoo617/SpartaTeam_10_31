@@ -19,7 +19,7 @@ public class Road : MonoBehaviour
         RoadMove(moveDirection);
     }
     void RoadMove(Vector3 direction)
-    {      
+    {
         transform.Translate(direction * moveSpeed * Time.deltaTime);   
     }
     void RoadSetFalse()

@@ -8,6 +8,9 @@ TagManager:
   - Huddle
   - LeftBuilding
   - RightBuilding
+  - Huddle1
+  - Huddle2
+  - Huddle3
   layers:
   - Default
   - TransparentFX

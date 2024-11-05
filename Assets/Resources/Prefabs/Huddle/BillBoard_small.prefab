@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5229774007101062187}
   - component: {fileID: 5949031315714008740}
+  - component: {fileID: 3046291625168230984}
   m_Layer: 0
   m_Name: BillBoard_small
   m_TagString: Huddle
@@ -131,9 +132,21 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.6, y: 2.5, z: 0.3}
   m_Center: {x: 0, y: 1.4, z: 0}
+--- !u!114 &3046291625168230984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630645490011148674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d78afb9ef833f344badda089d3c3957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
