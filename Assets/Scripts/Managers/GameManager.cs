@@ -97,7 +97,7 @@ public class GameManager : SingletonBase<GameManager>
     private void Start()
     {
         LoadGameData();
-        _playerLevel = (int)GameLevel.Easy;
+        //_playerLevel = (int)GameLevel.Easy;
         //GameStartSettings(_playerLevel);
         GameStartSettings();
 
@@ -119,12 +119,11 @@ public class GameManager : SingletonBase<GameManager>
     // public void GameStartSettings(int level)
     public void GameStartSettings()
     {
-        int level = 1;
-        _life = 4 - level;
+        _life = 4 - _playerLevel;
         Debug.Log(_life);
         _score = 0;
         _huddleCount = 0;
-        _roadMoveSpeed = 10f - (level * 2);
+        _roadMoveSpeed = 10f - (_playerLevel * 2);
         Time.timeScale = 1.0f;
     }
 
