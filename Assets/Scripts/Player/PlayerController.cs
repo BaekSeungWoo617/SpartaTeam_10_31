@@ -103,6 +103,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnPower(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (GameManager.Instance.GetPowerGauge() < 1.0f)
+                return;
+            GameManager.Instance.SetPowered();
+        }
+    }
+
     private void ApplyMove()
     {
         Vector3 moveVector = transform.forward * _increaseSpeed + transform.right * _moveInput.x * _horizontalSpeed;
@@ -117,7 +127,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /* TestCode */
-    // 장애물 트리거 시에 생명 줄고 소리나는 지 확인
+    // ?�애�??�리�??�에 ?�명 줄고 ?�리?�는 지 ?�인
     private void OnTriggerEnter(Collider other)
     {
         AudioManager.Instance.PlayCollsionSFX();

@@ -21,6 +21,35 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private float _roadMoveSpeed;
 
     [SerializeField] private int _playerLevel;
+
+    private float _powerTime = 0.0f;
+
+    private bool _isPower = false;
+    public bool IsPower
+    {
+        get { return _isPower; }
+        set { _isPower = value; }
+    }
+
+    private float _powerGauge = 0.0f;
+
+    public float GetPowerGauge()
+    {
+        return _powerGauge;
+    }
+
+    public void FillPowerGauge()
+    {
+        if(_powerGauge < 1.0f && !IsPower)
+            _powerGauge += UnityEngine.Random.Range(0.01f, 0.03f) * Time.deltaTime;
+    }
+
+    public void SetPowered()
+    {
+        IsPower = true;
+        _powerTime = 3.0f;
+        _powerGauge = 0.0f;
+    }
     
     public event Action<int> OnScoreChanged;
     public event Action OnLifeChanged;
@@ -106,6 +135,11 @@ public class GameManager : SingletonBase<GameManager>
     }
     private void Update()
     {
+        FillPowerGauge();
+        if(_powerTime <= 0.0f)
+        {
+            IsPower = false;
+        }
     }
     
     private void OnDisable()
