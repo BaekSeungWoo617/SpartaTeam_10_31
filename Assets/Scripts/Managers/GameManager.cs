@@ -7,13 +7,6 @@ using System.IO;
 using UnityEngine.Playables;
 public class GameManager : SingletonBase<GameManager>
 {
-    enum GameLevel
-    {
-        Easy = 1,
-        Normal,
-        Hard
-    }
-    
     [SerializeField] private int _score;
     [SerializeField] private int _huddleCount;
     [SerializeField] private int _life;
@@ -123,7 +116,7 @@ public class GameManager : SingletonBase<GameManager>
         Debug.Log(_life);
         _score = 0;
         _huddleCount = 0;
-        _roadMoveSpeed = 10f - (_playerLevel * 2);
+        _roadMoveSpeed = 10f + (_playerLevel * 5);
         Time.timeScale = 1.0f;
     }
 
