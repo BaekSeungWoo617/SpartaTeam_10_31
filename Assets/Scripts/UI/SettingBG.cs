@@ -33,6 +33,7 @@ public class SettingBG : MonoBehaviour
         menuBtn.onClick.AddListener((() =>
         {
             AudioManager.Instance.PlayClickSFX();
+            Time.timeScale = 1.0f;  // 일시정지 해제
             SceneManager.LoadScene("MenuScene");
         }));
         quitBtn.onClick.AddListener(OnClickQuitBtn);

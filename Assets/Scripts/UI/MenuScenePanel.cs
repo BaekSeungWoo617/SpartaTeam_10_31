@@ -23,16 +23,19 @@ public class MenuScenePanel : MonoBehaviour
         easyBtn.onClick.AddListener((() =>
         {
             GameManager.Instance.playerLevel = 1;
+            Time.timeScale = 1.0f;  // 일시정지 해제
             OnClickMenuBtn();
         }));
         normalBtn.onClick.AddListener((() =>
         {
             GameManager.Instance.playerLevel = 2;
+            Time.timeScale = 1.0f;  // 일시정지 해제
             OnClickMenuBtn();
         }));
         hardBtn.onClick.AddListener((() =>
         {
             GameManager.Instance.playerLevel = 3;
+            Time.timeScale = 1.0f;  // 일시정지 해제
             OnClickMenuBtn();
         }));
     }

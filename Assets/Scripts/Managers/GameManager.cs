@@ -2,15 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.IO;
+using UnityEngine.Playables;
 public class GameManager : SingletonBase<GameManager>
 {
-    enum GameLevel
-    {
-        Easy = 1,
-        Normal,
-        Hard
-    }
-    
     [SerializeField] private int _score;
     [SerializeField] private int _huddleCount;
     [SerializeField] private int _life;
@@ -18,18 +14,47 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private float _roadMoveSpeed;
 
     [SerializeField] private int _playerLevel;
+
+    private float _powerTime = 0.0f;
+
+    private bool _isPower = false;
+    public bool IsPower
+    {
+        get { return _isPower; }
+        set { _isPower = value; }
+    }
+
+    private float _powerGauge = 0.0f;
+
+    public float GetPowerGauge()
+    {
+        return _powerGauge;
+    }
+
+    public void FillPowerGauge()
+    {
+        if(_powerGauge < 1.0f && !IsPower)
+            _powerGauge += UnityEngine.Random.Range(0.01f, 0.03f) * Time.deltaTime;
+    }
+
+    public void SetPowered()
+    {
+        IsPower = true;
+        _powerTime = 3.0f;
+        _powerGauge = 0.0f;
+    }
     
     public event Action<int> OnScoreChanged;
     public event Action OnLifeChanged;
     public event Action OnGameOver;
 
+    public GameData gameData = new GameData();
     public int score
     {
         get { return _score; }
         set
         {
             _score = value;
-            OnScoreChanged?.Invoke(_score);
         }
     }
 
@@ -49,8 +74,9 @@ public class GameManager : SingletonBase<GameManager>
             if (_life <= 0)
             {
                 Time.timeScale = 0.0f;  // 일시 정지
-                ResetValue(); // Test Code
                 OnGameOver?.Invoke();
+                // ResetValue(); // Test Code
+
             }
         }
     }
@@ -82,25 +108,53 @@ public class GameManager : SingletonBase<GameManager>
         // ObstacleManager obstacleManager = ObstacleManager.Instance;
         // obstacleManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
+        
     }
-    
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
     private void Start()
     {
-        _playerLevel = (int)GameLevel.Easy;
-        GameStartSettings(_playerLevel);
+        LoadGameData();
+        //_playerLevel = (int)GameLevel.Easy;
+        //GameStartSettings(_playerLevel);
+        GameStartSettings();
 
         Debug.Log("Start");
+
     }
     private void Update()
     {
-        Debug.Log(_score);
+        FillPowerGauge();
+        _powerTime -= Time.deltaTime;
+        if (_powerTime <= 0.0f)
+        {
+            IsPower = false;
+        }
+        Debug.Log(GetPowerGauge());
+        Debug.Log(_isPower);
     }
-    public void GameStartSettings(int level)
+    
+    private void OnDisable()
     {
-        _life = 4 - level;
+        SceneManager.sceneLoaded -= SceneLoaded;
+    }
+    void OnApplicationQuit()
+    {
+        //SaveGameData();
+    }
+    // public void GameStartSettings(int level)
+    public void GameStartSettings()
+    {
+        _life = 4 - _playerLevel;
+        Debug.Log(_life);
         _score = 0;
         _huddleCount = 0;
-        _roadMoveSpeed = 10f - (level * 2);
+        _roadMoveSpeed = 10f + (_playerLevel * 5);
+        Time.timeScale = 1.0f;
     }
 
     public void GameOver()
@@ -130,6 +184,7 @@ public class GameManager : SingletonBase<GameManager>
         {
             _highScore = _score;
         }
+        OnScoreChanged?.Invoke(_score);
     }
 
     public void AddHuddleCount(int value)
@@ -141,5 +196,34 @@ public class GameManager : SingletonBase<GameManager>
     public void AddLife(int value)
     {
         _life += value;
+    }
+
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene Loaded");
+        GameStartSettings();
+    }
+    void SaveGameData()
+    {
+        //gameData.userName
+        //gameData.
+
+        string json = JsonUtility.ToJson(gameData);
+        File.WriteAllText(Application.persistentDataPath + "/gameData.json", json);
+        Debug.Log("게임 저장됨");
+    }
+    void LoadGameData()
+    {
+        string path = Application.persistentDataPath + "/gameData.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            gameData = JsonUtility.FromJson<GameData>(json);
+            Debug.Log("게임 로드됨");
+        }
+        else
+        {
+            Debug.Log("로드 실패");
+        }
     }
 }
