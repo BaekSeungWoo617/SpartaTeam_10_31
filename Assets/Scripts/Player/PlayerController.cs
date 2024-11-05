@@ -130,6 +130,9 @@ public class PlayerController : MonoBehaviour
     // ?¥ì• ë¬??¸ë¦¬ê±??œì— ?ëª… ì¤„ê³  ?Œë¦¬?˜ëŠ” ì§€ ?•ì¸
     private void OnTriggerEnter(Collider other)
     {
+        if (GameManager.Instance.IsPower)
+            return;
+
         AudioManager.Instance.PlayCollsionSFX();
         GameManager.Instance.life--;
     }

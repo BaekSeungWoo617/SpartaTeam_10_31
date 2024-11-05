@@ -129,10 +129,13 @@ public class GameManager : SingletonBase<GameManager>
     private void Update()
     {
         FillPowerGauge();
-        if(_powerTime <= 0.0f)
+        _powerTime -= Time.deltaTime;
+        if (_powerTime <= 0.0f)
         {
             IsPower = false;
         }
+        Debug.Log(GetPowerGauge());
+        Debug.Log(_isPower);
     }
     
     private void OnDisable()
