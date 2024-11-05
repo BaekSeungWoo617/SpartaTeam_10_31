@@ -8,7 +8,7 @@ public class MenuScenePanel : MonoBehaviour
     [SerializeField] private Button normalBtn;
     [SerializeField] private Button hardBtn;
 
-    private void Awake()
+    private void Start()
     {
         // 효과음과 함께 각 난이도별 Scene으로 넘어가는 이벤트 등록
         

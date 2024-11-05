@@ -8,11 +8,6 @@ public class ObstacleManager : SingletonBase<ObstacleManager>
     private float minZ = 10f;   // 장애물 생성 시작 지점
     private float maxZ = 200f;  // 장애물 생성 종료 지점
 
-    protected void Awake()
-    {
-        base.Awake();
-    }
-    
     private void Start()
     {
         // "Prefabs/Building"에서 모든 건물 프리팹 로드

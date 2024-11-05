@@ -7,12 +7,11 @@ public class PlayTopPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject lifePanel;
     
-    private void Awake()
+    private void Start()
     {
         // 시작 시 라이프 세팅
-         _life = GameManager.Instance.life;
-         Debug.Log(_life);
-        //_life = 3; // TestCode
+        // _life = GameManager.Instance.life;
+        _life = 3; // TestCode
         for (int i = 0; i < _life; i++)
         {
             CustomUtil.LoadAndInstantiatePrefab("Prefabs/UI/Objects/lifeImage", lifePanel.transform);
