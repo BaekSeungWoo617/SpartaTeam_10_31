@@ -32,11 +32,13 @@ public class GameManager : SingletonBase<GameManager>
             OnScoreChanged?.Invoke(_score);
         }
     }
+
     public int huddleCount
     {
         get { return _huddleCount; }
         set { _huddleCount = value; }
     }
+
     public int life
     {
         get { return _life; }
@@ -51,15 +53,18 @@ public class GameManager : SingletonBase<GameManager>
             }
         }
     }
+
     public int highScore
     {
         get { return _highScore; }
     }
+
     public float roadMoveSpeed
     {
         get { return _roadMoveSpeed; }
         set { _roadMoveSpeed = value; }
     }
+
     public int playerLevel
     {
         get { return _playerLevel; }
@@ -82,6 +87,8 @@ public class GameManager : SingletonBase<GameManager>
     {
         _playerLevel = (int)GameLevel.Easy;
         GameStartSettings(_playerLevel);
+
+        Time.timeScale = 1.0f;
     }
     
     public void GameStartSettings(int level)
@@ -91,8 +98,11 @@ public class GameManager : SingletonBase<GameManager>
         _huddleCount = 0;
         _roadMoveSpeed = 10f - (level * 2);
     }
+
     public void GameOver()
     {
+        Time.timeScale = 0.0f;
+
         // Comment For UI Test
         // if (_score > _highScore)
         // {
@@ -100,6 +110,7 @@ public class GameManager : SingletonBase<GameManager>
         // }
         // ResetValue();
     }
+
     public void ResetValue()
     {
         // For UI Test
@@ -111,14 +122,17 @@ public class GameManager : SingletonBase<GameManager>
         _huddleCount = 0;
         _life = 4 - _playerLevel;
     }
+
     public void AddScore(int value)
     {
         _score += value;
     }
+
     public void AddHuddleCount(int value)
     {
         _huddleCount += value;
     }
+
     public void AddLife(int value)
     {
         _life += value;
