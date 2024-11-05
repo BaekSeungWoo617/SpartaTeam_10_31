@@ -7,6 +7,7 @@ public class Huddle : MonoBehaviour
     // 장애물이 도로를 따라 움직이는 속도
     float moveSpeed;
     Vector3 moveDirection = new Vector3(0, 0, -1);
+    [SerializeField]
     bool isHuddleScore = true;
     GameManager manager;
     private void Start()

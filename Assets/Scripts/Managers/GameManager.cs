@@ -90,7 +90,10 @@ public class GameManager : SingletonBase<GameManager>
 
         Time.timeScale = 1.0f;
     }
-    
+    private void Update()
+    {
+        Debug.Log(_score);
+    }
     public void GameStartSettings(int level)
     {
         _life = 4 - level;
