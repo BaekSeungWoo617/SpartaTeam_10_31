@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 9436c6624d952ac41901b45e3e01a8b7
   - enabled: 1
-    path: Assets/Scenes/PlayScene.unity
+    path: Assets/Scenes/HSH1.unity
     guid: a8711668c706f244ea17033700ab2ea1
+  - enabled: 1
+    path: Assets/Scenes/PlayScene.unity
+    guid: 26904501e615a684199dac02cd43b83c
   m_configObjects: {}

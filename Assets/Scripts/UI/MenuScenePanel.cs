@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,22 +10,31 @@ public class MenuScenePanel : MonoBehaviour
 
     private void Start()
     {
-        // 버튼에 이벤트 한번에 등록
-        // Button[] instances = FindObjectsByType<Button>(FindObjectsSortMode.None);
-        // foreach (Button btn in instances)
-        // {
-        //     btn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
-        // }
-        
         // 효과음과 함께 각 난이도별 Scene으로 넘어가는 이벤트 등록
         
-        easyBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
-        normalBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
-        hardBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
+        // easyBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
+        // normalBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
+        // hardBtn.onClick.AddListener(AudioManager.Instance.PlayClickSFX);
         
-        easyBtn.onClick.AddListener((() => { SceneManager.LoadScene("PlayScene"); }));
-        normalBtn.onClick.AddListener((() => { SceneManager.LoadScene("PlayScene"); }));
-        hardBtn.onClick.AddListener((() => { SceneManager.LoadScene("PlayScene"); }));
+        // easyBtn.onClick.AddListener((() => { SceneManager.LoadScene("PlayScene"); }));
+        // normalBtn.onClick.AddListener((() => { SceneManager.LoadScene("PlayScene"); }));
+        // hardBtn.onClick.AddListener((() => { SceneManager.LoadScene("PlayScene"); }));
+        
+        easyBtn.onClick.AddListener((() =>
+        {
+            GameManager.Instance.playerLevel = 1;
+            OnClickMenuBtn();
+        }));
+        normalBtn.onClick.AddListener((() =>
+        {
+            GameManager.Instance.playerLevel = 2;
+            OnClickMenuBtn();
+        }));
+        hardBtn.onClick.AddListener((() =>
+        {
+            GameManager.Instance.playerLevel = 3;
+            OnClickMenuBtn();
+        }));
     }
 
     private void OnDestroy()
@@ -34,5 +42,11 @@ public class MenuScenePanel : MonoBehaviour
         easyBtn.onClick.RemoveAllListeners();
         normalBtn.onClick.RemoveAllListeners();
         hardBtn.onClick.RemoveAllListeners();
+    }
+
+    private void OnClickMenuBtn()
+    {
+        AudioManager.Instance.PlayClickSFX();
+        SceneManager.LoadScene("PlayScene");
     }
 }
