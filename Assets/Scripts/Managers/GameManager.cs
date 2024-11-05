@@ -32,11 +32,13 @@ public class GameManager : SingletonBase<GameManager>
             OnScoreChanged?.Invoke(_score);
         }
     }
+
     public int huddleCount
     {
         get { return _huddleCount; }
         set { _huddleCount = value; }
     }
+
     public int life
     {
         get { return _life; }
@@ -46,20 +48,23 @@ public class GameManager : SingletonBase<GameManager>
             OnLifeChanged?.Invoke();
             if (_life <= 0)
             {
-                // ResetValue(); // Test Code
+                ResetValue(); // Test Code
                 OnGameOver?.Invoke();
             }
         }
     }
+
     public int highScore
     {
         get { return _highScore; }
     }
+
     public float roadMoveSpeed
     {
         get { return _roadMoveSpeed; }
         set { _roadMoveSpeed = value; }
     }
+
     public int playerLevel
     {
         get { return _playerLevel; }
@@ -69,12 +74,12 @@ public class GameManager : SingletonBase<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        RoadManager roadManager = RoadManager.Instance;
-        roadManager.transform.parent = this.transform;
-        BuildingManager buildingManager = BuildingManager.Instance;
-        buildingManager.transform.parent = this.transform;
-        ObstacleManager obstacleManager = ObstacleManager.Instance;
-        obstacleManager.transform.parent = this.transform;
+        // RoadManager roadManager = RoadManager.Instance;
+        // roadManager.transform.parent = this.transform;
+        // BuildingManager buildingManager = BuildingManager.Instance;
+        // buildingManager.transform.parent = this.transform;
+        // ObstacleManager obstacleManager = ObstacleManager.Instance;
+        // obstacleManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
     }
     
@@ -82,43 +87,56 @@ public class GameManager : SingletonBase<GameManager>
     {
         _playerLevel = (int)GameLevel.Easy;
         GameStartSettings(_playerLevel);
+
+        Time.timeScale = 1.0f;
     }
-    
+    private void Update()
+    {
+        Debug.Log(_score);
+    }
     public void GameStartSettings(int level)
     {
-        _life = 3 - level;
+        _life = 4 - level;
         _score = 0;
         _huddleCount = 0;
         _roadMoveSpeed = 10f - (level * 2);
     }
+
     public void GameOver()
     {
+        Time.timeScale = 0.0f;
+
         // Comment For UI Test
-        if (_score > _highScore)
-        {
-            _highScore = _score;
-        }
-        ResetValue();
-    }
-    public void ResetValue()
-    {
-        // For UI Test
         // if (_score > _highScore)
         // {
         //     _highScore = _score;
         // }
+        // ResetValue();
+    }
+
+    public void ResetValue()
+    {
+        // For UI Test
         _score = 0;
         _huddleCount = 0;
-        _life = 3;
+        _life = 4 - _playerLevel;
     }
+
     public void AddScore(int value)
     {
         _score += value;
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+        }
     }
+
     public void AddHuddleCount(int value)
     {
         _huddleCount += value;
+        AddScore(value);
     }
+
     public void AddLife(int value)
     {
         _life += value;

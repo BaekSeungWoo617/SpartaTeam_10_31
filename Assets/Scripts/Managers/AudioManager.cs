@@ -23,7 +23,11 @@ public class AudioManager : SingletonBase<AudioManager>
         SetAudioSource();
         SetAudioClip();
     }
-
+    private void Start()
+    {
+        _bgmSource.volume = 0.2f;
+        _sfxSource.volume = 0.2f;
+    }
     private void SetAudioSource()
     {
         // AudioManager의 자식으로 AudioSource 컴포넌트 가진 @BGM 생성
