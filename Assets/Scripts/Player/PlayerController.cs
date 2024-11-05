@@ -118,9 +118,9 @@ public class PlayerController : MonoBehaviour
 
     /* TestCode */
     // 장애물 트리거 시에 생명 줄고 소리나는 지 확인
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     AudioManager.Instance.PlayCollsionSFX();
-    //     GameManager.Instance.life--;
-    // }
+    private void OnTriggerEnter(Collider other)
+    {
+        AudioManager.Instance.PlayCollsionSFX();
+        GameManager.Instance.life--;
+    }
 }

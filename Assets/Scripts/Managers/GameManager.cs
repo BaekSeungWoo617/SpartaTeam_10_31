@@ -46,7 +46,7 @@ public class GameManager : SingletonBase<GameManager>
             OnLifeChanged?.Invoke();
             if (_life <= 0)
             {
-                // ResetValue(); // Test Code
+                ResetValue(); // Test Code
                 OnGameOver?.Invoke();
             }
         }
@@ -69,12 +69,12 @@ public class GameManager : SingletonBase<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        RoadManager roadManager = RoadManager.Instance;
-        roadManager.transform.parent = this.transform;
-        BuildingManager buildingManager = BuildingManager.Instance;
-        buildingManager.transform.parent = this.transform;
-        ObstacleManager obstacleManager = ObstacleManager.Instance;
-        obstacleManager.transform.parent = this.transform;
+        // RoadManager roadManager = RoadManager.Instance;
+        // roadManager.transform.parent = this.transform;
+        // BuildingManager buildingManager = BuildingManager.Instance;
+        // buildingManager.transform.parent = this.transform;
+        // ObstacleManager obstacleManager = ObstacleManager.Instance;
+        // obstacleManager.transform.parent = this.transform;
         DontDestroyOnLoad(gameObject);
     }
     
@@ -86,7 +86,7 @@ public class GameManager : SingletonBase<GameManager>
     
     public void GameStartSettings(int level)
     {
-        _life = 3 - level;
+        _life = 4 - level;
         _score = 0;
         _huddleCount = 0;
         _roadMoveSpeed = 10f - (level * 2);
@@ -94,22 +94,22 @@ public class GameManager : SingletonBase<GameManager>
     public void GameOver()
     {
         // Comment For UI Test
-        if (_score > _highScore)
-        {
-            _highScore = _score;
-        }
-        ResetValue();
-    }
-    public void ResetValue()
-    {
-        // For UI Test
         // if (_score > _highScore)
         // {
         //     _highScore = _score;
         // }
+        // ResetValue();
+    }
+    public void ResetValue()
+    {
+        // For UI Test
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+        }
         _score = 0;
         _huddleCount = 0;
-        _life = 3;
+        _life = 4 - _playerLevel;
     }
     public void AddScore(int value)
     {
