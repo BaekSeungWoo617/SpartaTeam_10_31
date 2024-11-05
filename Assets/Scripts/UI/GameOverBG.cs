@@ -32,8 +32,8 @@ public class GameOverBG : MonoBehaviour
     private void OnClickRetryBtn()
     {
         AudioManager.Instance.PlayClickSFX();
-        Time.timeScale = 1.0f;  // 일시 정지 해제
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("PlayScene");
     }
 
     private void ShowGameOverBG()
@@ -42,6 +42,5 @@ public class GameOverBG : MonoBehaviour
         scoreText.text = GameManager.Instance.score.ToString();
         highscoreText.text = GameManager.Instance.highScore.ToString();
         gameObject.SetActive(true);
-        Time.timeScale = 0.0f;  // 일시 정지
     }
 }
