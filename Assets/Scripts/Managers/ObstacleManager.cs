@@ -5,7 +5,7 @@ public class ObstacleManager : SingletonBase<ObstacleManager>
 {
     private GameObject[] hurdlePrefabs;
     [SerializeField] private int hurdlePerRoad; // 하나의 Road 내에 생성할 장애물 수
-    private float minZ = 10f;   // 장애물 생성 시작 지점
+    private float minZ = 20f;   // 장애물 생성 시작 지점
     private float maxZ = 200f;  // 장애물 생성 종료 지점
 
     protected override void Awake()

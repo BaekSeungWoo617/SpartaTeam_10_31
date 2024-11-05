@@ -66,8 +66,7 @@ public class GameManager : SingletonBase<GameManager>
             OnLifeChanged?.Invoke();
             if (_life <= 0)
             {
-                Time.timeScale = 0.0f;  // 일시 정지
-                OnGameOver?.Invoke();
+                GameOver();
             }
         }
     }
@@ -134,12 +133,13 @@ public class GameManager : SingletonBase<GameManager>
 
     public void GameOver()
     {
-        Time.timeScale = 0.0f;
+        Time.timeScale = 0.0f;  // 일시 정지
+        OnGameOver?.Invoke();
     }
 
     public void AddScore(int value)
     {
-        _score += value;
+        _score += value * _playerLevel;
         if (_score > _highScore)
         {
             _highScore = _score;
