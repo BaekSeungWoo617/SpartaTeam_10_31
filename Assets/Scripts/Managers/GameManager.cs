@@ -52,6 +52,7 @@ public class GameManager : SingletonBase<GameManager>
             OnLifeChanged?.Invoke();
             if (_life <= 0)
             {
+                Time.timeScale = 0.0f;  // ?¼ì‹œ ?•ì?
                 ResetValue(); // Test Code
                 OnGameOver?.Invoke();
             }
@@ -91,10 +92,10 @@ public class GameManager : SingletonBase<GameManager>
     {
         _playerLevel = (int)GameLevel.Easy;
         GameStartSettings(_playerLevel);
-
         Time.timeScale = 1.0f;
 
         LoadGameData();
+
     }
     private void Update()
     {
