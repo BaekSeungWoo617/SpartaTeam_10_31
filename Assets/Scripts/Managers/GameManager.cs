@@ -23,6 +23,11 @@ public class GameManager : SingletonBase<GameManager>
         set { _isPower = value; }
     }
 
+    public float GetPowerTime()
+    {
+        return _powerTime;
+    }
+
     private float _powerGauge = 0.0f;
 
     public float GetPowerGauge()
@@ -128,6 +133,8 @@ public class GameManager : SingletonBase<GameManager>
         _life = 4 - _playerLevel;
         _score = 0;
         _roadMoveSpeed = 10f + (_playerLevel * 5);
+        _powerTime = 3.0f;
+        _powerGauge = 0.0f;
         Time.timeScale = 1.0f;
     }
 
