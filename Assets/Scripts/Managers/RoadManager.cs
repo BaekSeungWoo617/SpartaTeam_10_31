@@ -11,7 +11,7 @@ public class RoadManager : SingletonBase<RoadManager>
     private GameObject StartRoad;
     private GameObject EndRoad;
 
-    private float spawnInterval = 2.0f;
+    private float spawnInterval = 0.5f;
     private float timer;
     protected override void Awake()
     {
