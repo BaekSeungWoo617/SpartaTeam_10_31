@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+
 public class GameManager : SingletonBase<GameManager>
 {
     enum GameLevel
@@ -18,7 +20,9 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private float _roadMoveSpeed;
 
     [SerializeField] private int _playerLevel;
-    
+
+    public GameData gameData = new GameData();
+
     public event Action<int> OnScoreChanged;
     public event Action OnLifeChanged;
     public event Action OnGameOver;
@@ -89,10 +93,16 @@ public class GameManager : SingletonBase<GameManager>
         GameStartSettings(_playerLevel);
 
         Time.timeScale = 1.0f;
+
+        LoadGameData();
     }
     private void Update()
     {
-        Debug.Log(_score);
+
+    }
+    void OnApplicationQuit()
+    {
+        //SaveGameData();
     }
     public void GameStartSettings(int level)
     {
@@ -101,7 +111,6 @@ public class GameManager : SingletonBase<GameManager>
         _huddleCount = 0;
         _roadMoveSpeed = 10f - (level * 2);
     }
-
     public void GameOver()
     {
         Time.timeScale = 0.0f;
@@ -140,5 +149,29 @@ public class GameManager : SingletonBase<GameManager>
     public void AddLife(int value)
     {
         _life += value;
+    }
+    void SaveGameData()
+    {
+        //gameData.userName
+        //gameData.
+
+        string json = JsonUtility.ToJson(gameData);
+        File.WriteAllText(Application.persistentDataPath + "/gameData.json", json);
+        Debug.Log("게임 데이터 저장됨");
+    }
+
+    void LoadGameData()
+    {
+        string path = Application.persistentDataPath + "/gameData.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            gameData = JsonUtility.FromJson<GameData>(json);
+            Debug.Log("게임 데이터 로드됨");
+        }
+        else
+        {
+            Debug.Log("저장된 게임 데이터가 없습니다.");
+        }
     }
 }

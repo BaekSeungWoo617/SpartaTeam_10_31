@@ -11,7 +11,6 @@ public class PlayTopPanel : MonoBehaviour
     {
         // 시작 시 라이프 세팅
          _life = GameManager.Instance.life;
-         Debug.Log(_life);
         //_life = 3; // TestCode
         for (int i = 0; i < _life; i++)
         {

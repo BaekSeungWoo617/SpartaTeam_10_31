@@ -22,7 +22,7 @@ public class Huddle : MonoBehaviour
         if (this.transform.position.z < 0 && isHuddleScore)
         {
             isHuddleScore = false;
-            manager.AddHuddleCount(1);         
+            manager.AddHuddleCount(1);
         }
     }
     

@@ -32,7 +32,7 @@ public class GameOverBG : MonoBehaviour
     private void OnClickRetryBtn()
     {
         AudioManager.Instance.PlayClickSFX();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("PlayScene");
     }
 
     private void ShowGameOverBG()

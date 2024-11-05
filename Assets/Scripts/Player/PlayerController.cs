@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             _increaseSpeed *= 1.05f;
             _time = 0.0f;
-            Debug.Log(_increaseSpeed);
         }
 
         _animator.SetBool("IsRun", true);
