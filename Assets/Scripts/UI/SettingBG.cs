@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingBG : MonoBehaviour
@@ -8,6 +9,7 @@ public class SettingBG : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
     
     [SerializeField] private Button closeBtn;
+    [SerializeField] private Button menuBtn;
     [SerializeField] private Button quitBtn;
     
     private void Start()
@@ -27,6 +29,11 @@ public class SettingBG : MonoBehaviour
             gameObject.SetActive(false);
         }));
         
+        menuBtn.onClick.AddListener((() =>
+        {
+            AudioManager.Instance.PlayClickSFX();
+            SceneManager.LoadScene("MenuScene");
+        }));
         quitBtn.onClick.AddListener(OnClickQuitBtn);
         gameObject.SetActive(false);
     }
