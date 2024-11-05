@@ -15,7 +15,7 @@ public class AudioManager : SingletonBase<AudioManager>
     [SerializeField] private AudioClip collisionSfx;
     [SerializeField] private AudioClip clickSfx;
     
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
