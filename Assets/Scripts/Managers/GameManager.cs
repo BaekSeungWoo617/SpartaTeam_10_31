@@ -20,6 +20,16 @@ public class GameManager : SingletonBase<GameManager>
     public bool _achievement1 = false;
     public bool _achievement2 = false;
     GameData gameData;
+    public bool achievement1
+    {
+        get { return _achievement1; }
+        set { _achievement1 = value; }
+    }
+    public bool achievement2
+    {
+        get { return _achievement2; }
+        set { _achievement2 = value; }
+    }
     public bool IsPower
     {
         get { return _isPower; }
