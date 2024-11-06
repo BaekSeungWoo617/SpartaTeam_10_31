@@ -17,12 +17,38 @@ public class GameManager : SingletonBase<GameManager>
     private float _powerTime = 0.0f;
 
     private bool _isPower = false;
+    public bool _achievement1 = false;
+    public bool _achievement2 = false;
+    GameData gameData;
     public bool IsPower
     {
         get { return _isPower; }
         set { _isPower = value; }
     }
+    public void CheakAchieve()
+    {
+        if(_highScore >50)//최고기록 50초과
+        {
+            _achievement1 = true;
+        }
+        else
+        {
+            _achievement1 = false;
+        }
+        if (_life < 1)//죽었을때
+        {
+            _achievement2 = true;
+        }
+        Debug.Log("목표1 " + _achievement1);
+        Debug.Log("목표2 " + _achievement2);
 
+    }
+    public void SavePlayingData()
+    {
+        gameData.highScore = _highScore;
+        gameData.achievement1 = _achievement1;
+        gameData.achievement2 = _achievement2;
+    }
     public float GetPowerTime()
     {
         return _powerTime;
@@ -52,7 +78,6 @@ public class GameManager : SingletonBase<GameManager>
     public event Action OnLifeChanged;
     public event Action OnGameOver;
 
-    public GameData gameData = new GameData();
     public int score
     {
         get { return _score; }
@@ -97,6 +122,7 @@ public class GameManager : SingletonBase<GameManager>
     {
         base.Awake();       
         DontDestroyOnLoad(gameObject);
+        gameData = new GameData();
         
     }
 
@@ -140,6 +166,7 @@ public class GameManager : SingletonBase<GameManager>
 
     public void GameOver()
     {
+        CheakAchieve();
         Time.timeScale = 0.0f;  // 일시 정지
         OnGameOver?.Invoke();
     }
@@ -165,7 +192,7 @@ public class GameManager : SingletonBase<GameManager>
     }
     void SaveGameData()
     {
-        //ToDO : 업적 데이터
+        SavePlayingData();
 
         string json = JsonUtility.ToJson(gameData);
         File.WriteAllText(Application.persistentDataPath + "/gameData.json", json);

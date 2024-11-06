@@ -9,6 +9,5 @@ public class GameData : MonoBehaviour
     public int highScore;
     public bool achievement1;
     public bool achievement2;
-    public bool achievement3;
 
 }
